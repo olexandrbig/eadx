@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /g/projects/eadx/eadx && npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --turbopack --import-alias \"@/*\" --no-git 2>&1)",
+      "Bash(cd /tmp && echo \"n\" | npx create-next-app@latest eadx-scaffold --typescript --tailwind --eslint --app --src-dir --turbopack --import-alias \"@/*\" --no-git 2>&1)",
+      "Bash(cp:*)",
+      "Bash(cd /g/projects/eadx/eadx && npm install 2>&1)",
+      "Bash(cd /g/projects/eadx/eadx && npm ls @mdx-js/mdx 2>&1)",
+      "Bash(cd /g/projects/eadx/eadx && npm install @mdx-js/mdx 2>&1)",
+      "Bash(cd /g/projects/eadx/eadx && npm run build 2>&1)",
+      "Bash(cd /g/projects/eadx/eadx && npm run lint 2>&1)",
+      "Bash(cd /g/projects/eadx/eadx && npm run lint 2>&1 && npm run build 2>&1)"
+    ]
+  }
+}

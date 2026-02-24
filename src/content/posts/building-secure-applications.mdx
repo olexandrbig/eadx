@@ -1,0 +1,27 @@
+---
+title: "Building Secure Applications from Day One"
+date: "2026-02-18"
+excerpt: "Security is not an afterthought. We explore how modern frameworks and best practices help teams ship secure software without slowing down development."
+author: "EADX Team"
+---
+
+## Security as a Foundation
+
+Too often, security gets bolted on at the end of a project. By then, the cost of fixing vulnerabilities is orders of magnitude higher than addressing them during design.
+
+## Our Approach
+
+At EADX, security is embedded into every layer:
+
+- **Transport layer** — HSTS headers enforce encrypted connections from the first request
+- **Content policy** — strict CSP rules prevent cross-site scripting and data injection
+- **Frame protection** — X-Frame-Options blocks clickjacking attempts
+- **Permission boundaries** — browser APIs like camera and geolocation are denied by default
+
+## Modern Frameworks Help
+
+Frameworks like Next.js provide built-in protections: automatic escaping in JSX, secure headers configuration, and server-side rendering that reduces client-side attack surface.
+
+## The Takeaway
+
+Security doesn't have to slow you down. With the right tools and mindset, it becomes a natural part of shipping quality software.

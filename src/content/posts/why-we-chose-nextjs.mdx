@@ -1,0 +1,32 @@
+---
+title: "Why We Chose Next.js for Our Platform"
+date: "2026-02-10"
+excerpt: "A look at the technical decisions behind our stack — from server components to static generation, and why Next.js was the right fit for EADX."
+author: "EADX Team"
+---
+
+## Evaluating Options
+
+When building a new platform, the framework choice sets the tone for everything that follows. We evaluated several options before landing on Next.js 16.
+
+## What Stood Out
+
+### Server Components by Default
+
+React Server Components let us render on the server without shipping JavaScript to the client. This means faster page loads and better SEO out of the box.
+
+### Static Generation
+
+Our blog posts are compiled at build time. No database queries, no API calls at runtime — just fast, pre-rendered HTML served from the edge.
+
+### Built-in Optimizations
+
+Image optimization, font loading, code splitting — Next.js handles the performance basics so we can focus on building features.
+
+## Minimal Dependencies
+
+We deliberately kept our dependency count low. Next.js, TypeScript, Tailwind CSS, and MDX — that's the core. Every additional package is a maintenance burden and a potential security risk.
+
+## Looking Ahead
+
+As the platform grows, Next.js gives us room to scale — from static pages to dynamic server-rendered routes, API endpoints, and middleware — all within the same framework.
