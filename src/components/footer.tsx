@@ -30,7 +30,7 @@ export function Footer() {
         <div className="mb-12">
           <Link href="/">
             <Image
-              src="/h-eadx-logo-white.svg"
+              src="/h-eadx-logo-negavitve.svg"
               alt="EADX"
               width={150}
               height={40}

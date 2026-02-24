@@ -50,8 +50,8 @@ All content lives in `src/content/` as MDX files with YAML frontmatter:
 Split into server and client parts for scroll-aware behavior:
 - `header.tsx` — server component, defines navigation items
 - `header-client.tsx` — client component, handles scroll detection
-  - **On homepage at top**: transparent background, white logo (`h-eadx-logo-white.svg`), white nav text
-  - **On scroll / other pages**: solid white background with drop shadow, dark logo (`h-eadx-logo.svg`)
+  - **On homepage at top**: transparent background, negative/white logo (`h-eadx-logo-negavitve.svg`), white nav text
+  - **On scroll / other pages**: solid white background with drop shadow, dark logo (`h-eadx-logo.svg`), negative logo in dark mode
   - Stays transparent through all `h-screen` hero sections, switches to solid after last one
 - `mobile-menu.tsx` — hamburger menu, slide-in panel from right, body scroll lock
   - Hamburger bar color adapts to transparent/solid header state
@@ -112,7 +112,7 @@ All links across the site use the same hover pattern:
 
 ### Footer
 - Full black background (`bg-zinc-950`)
-- White logo (`h-eadx-logo-white.svg`)
+- Negative/white logo (`h-eadx-logo-negavitve.svg`)
 - 4-column grid on desktop, includes address, phone, email
 - Bottom row: LinkedIn icon, copyright, scroll-to-top button
 
@@ -120,8 +120,9 @@ All links across the site use the same hover pattern:
 
 | File | Usage |
 |------|-------|
-| `h-eadx-logo.svg` | Header (solid background) |
-| `h-eadx-logo-white.svg` | Header (transparent/over video), footer |
+| `h-eadx-logo.svg` | Header on light/solid backgrounds |
+| `h-eadx-logo-negavitve.svg` | Header (transparent/over video), header dark mode, footer |
+| `h-eadx-logo-white.svg` | Legacy white logo (unused in components, kept in public/) |
 | `eadx-avatar.svg` | Favicon, site icon |
 | `eadx-avatar-dark.svg` / `eadx-avatar-white.svg` | Avatar variants |
 | `v-01-*`, `v-02-*` | Vertical logo variants |

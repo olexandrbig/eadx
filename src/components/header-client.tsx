@@ -44,13 +44,31 @@ export function HeaderClient({ navigation }: HeaderClientProps) {
     >
       <nav className="flex h-20 items-center justify-between px-8 lg:px-12">
         <Link href="/" className="flex items-center">
-          <Image
-            src={transparent ? "/h-eadx-logo-white.svg" : "/h-eadx-logo.svg"}
-            alt="EADX"
-            width={150}
-            height={40}
-            className={transparent ? "" : "dark:invert"}
-          />
+          {transparent ? (
+            <Image
+              src="/h-eadx-logo-negavitve.svg"
+              alt="EADX"
+              width={150}
+              height={40}
+            />
+          ) : (
+            <>
+              <Image
+                src="/h-eadx-logo.svg"
+                alt="EADX"
+                width={150}
+                height={40}
+                className="dark:hidden"
+              />
+              <Image
+                src="/h-eadx-logo-negavitve.svg"
+                alt="EADX"
+                width={150}
+                height={40}
+                className="hidden dark:block"
+              />
+            </>
+          )}
         </Link>
 
         {/* Desktop nav */}
