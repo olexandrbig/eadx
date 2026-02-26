@@ -1,8 +1,10 @@
 import { HeaderClient } from "@/components/header-client";
 
 const navigation = [
-  { name: "Services", href: "/blog" },
-  { name: "Company", href: "/blog" },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Company", href: "/company" },
+  { name: "Career", href: "/career" },
   { name: "Contact", href: "/contact" },
 ];
 

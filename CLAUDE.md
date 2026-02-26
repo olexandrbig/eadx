@@ -25,21 +25,24 @@ App Router with `src/` directory. All routes under `src/app/`:
 
 | Route | Description |
 |-------|-------------|
-| `/` | Homepage — hero videos, scrolling text sections, latest posts, contact form |
-| `/blog` | Blog listing with client-side keyword search |
-| `/blog/[slug]` | Individual blog post (SSG via `generateStaticParams`) |
+| `/` | Homepage — hero video, about sections, global reach, services cards, contact form |
+| `/services` | Services listing page |
+| `/services/[slug]` | Individual service page (SSG via `generateStaticParams`) |
 | `/contact` | Contact page with form |
+| `/company` | Company info (MDX) |
+| `/career` | Career page (Coming Soon, MDX) |
 | `/terms` | Terms and Conditions (MDX) |
 | `/imprint` | Imprint / legal info (MDX) |
 | `/privacy` | Privacy Policy (MDX) |
+| `/compliance` | Compliance (MDX) |
 
 ### Content System
 
 All content lives in `src/content/` as MDX files with YAML frontmatter:
 
-- **Blog posts**: `src/content/posts/*.mdx` — frontmatter: title, date, excerpt, author
-  - `src/lib/posts.ts` — reads, parses, sorts posts by date
-- **Legal pages**: `src/content/pages/*.mdx` — frontmatter: title, description, lastUpdated
+- **Services**: `src/content/services/*.mdx` — frontmatter: title, excerpt, image
+  - `src/lib/services.ts` — reads and parses service content
+- **Legal/info pages**: `src/content/pages/*.mdx` — frontmatter: title, description, lastUpdated
   - `src/lib/pages.ts` — reads and parses page content
 - `src/lib/mdx.tsx` — shared MDX component mappings (typography styles for h1-h3, p, lists, code, blockquotes, links)
 - `src/components/mdx-remote.tsx` — server-side MDX compilation via `@mdx-js/mdx`
@@ -48,7 +51,7 @@ All content lives in `src/content/` as MDX files with YAML frontmatter:
 ### Header
 
 Split into server and client parts for scroll-aware behavior:
-- `header.tsx` — server component, defines navigation items
+- `header.tsx` — server component, defines navigation items (Home, Services, Company, Career, Contact)
 - `header-client.tsx` — client component, handles scroll detection
   - **On homepage at top**: transparent background, negative/white logo (`h-eadx-logo-negavitve.svg`), white nav text
   - **On scroll / other pages**: solid white background with drop shadow, dark logo (`h-eadx-logo.svg`), negative logo in dark mode
@@ -58,31 +61,30 @@ Split into server and client parts for scroll-aware behavior:
 
 ### Homepage Sections
 
-1. **Hero section** — full viewport (`h-screen`), background video (`hero-video-1.mp4`), centered text, scroll indicator
-2. **Video expand section** (`video-expand-section.tsx`) — sticky scroll-linked animation:
-   - Video starts at 80% scale with rounded corners, expands to 100% on scroll
-   - Two text boxes in dark cards travel bottom→top sequentially (right side first, left side second)
-   - First text box uses accent blue background (`#005774`), second uses black
-   - `h-[200vh]` scroll container with sticky viewport
-3. **Latest posts** — shows 2 most recent posts with "View all articles" link
-4. **Contact section** — reusable component with form
+1. **Hero section** — full viewport (`h-screen`), background video (`hero-video-1.mp4`), left-aligned heading + subtitle, scroll indicator on right
+2. **"We are EADX"** — white bg, two-column: left = large avatar logo, right = heading + body text
+3. **"Global reach, local expertise"** — full-width background video, dark gradient overlay, text at bottom-left
+4. **"EADX always on your side"** — white bg, two-column: left = vertical logo, right = heading + body text
+5. **"Learn more about our services"** — light gray bg, 3 image cards linking to service pages
+6. **Contact section** — centered heading, decorative logo watermark, redesigned form
 
-### Blog
+### Services
 
-- `blog-search.tsx` — client-side keyword filter over posts (title, excerpt, author)
-- `post-card.tsx` — full-width card with date, title, excerpt, centered arrow button
-- Blog page has light gray background (`bg-zinc-100`)
+- 3 services: Enterprise Integration, Data & AI, Cloud Operations
+- `src/content/services/*.mdx` — service content with frontmatter (title, excerpt, image)
+- `src/lib/services.ts` — reads/parses service MDX files
+- Services listing page and individual detail pages with SSG
 
 ### Contact
 
-- `contact-form.tsx` — client component: name, company, email, country dropdown, message, privacy checkbox, submit button
-- `contact-section.tsx` — two-column layout: left = heading + address info, right = form
+- `contact-form.tsx` — client component: first name, last name, company, email, phone, message, privacy checkbox, submit button
+- `contact-section.tsx` — centered layout with heading, subtitle, decorative logo watermark, form
 - Form submit is client-side only (TODO: integrate with backend)
 
 ### Legal Pages
 
 - `legal-page.tsx` — shared async component that reads MDX from `src/content/pages/` and renders it
-- Used by `/terms`, `/imprint`, `/privacy`
+- Used by `/terms`, `/imprint`, `/privacy`, `/compliance`, `/company`, `/career`
 
 ## Design System
 
@@ -92,11 +94,13 @@ Defined as CSS custom properties in `globals.css` and registered as Tailwind the
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--accent` / `accent` | `#005774` | Dark blue — links on light backgrounds, focus rings, text box backgrounds |
-| `--accent-light` / `accent-light` | `#80D6F2` | Light blue — links on dark backgrounds, submit button, hover states |
+| `--accent` / `accent` | `#005774` | Dark blue — links on light backgrounds, focus rings, buttons, contact form submit |
+| `--accent-light` / `accent-light` | `#80D6F2` | Light blue — links on dark backgrounds, hover states |
 
 ### Typography
-- Inter font via `next/font` (variable `--font-geist-sans`)
+- Plus Jakarta Sans font via `next/font` (variable `--font-geist-sans`)
+- Hero heading: 72px bold, 100% line-height
+- Hero subtitle: 28px medium, 160% line-height
 - Dark mode via `prefers-color-scheme` media query
 
 ### Link Style Convention
@@ -111,10 +115,10 @@ All links across the site use the same hover pattern:
 - Nav links: `text-lg font-semibold`, `gap-12`
 
 ### Footer
-- Full black background (`bg-zinc-950`)
+- Dark gray background (`bg-zinc-800`)
 - Negative/white logo (`h-eadx-logo-negavitve.svg`)
-- 4-column grid on desktop, includes address, phone, email
-- Bottom row: LinkedIn icon, copyright, scroll-to-top button
+- 4-column grid: logo, 2 link columns, scroll-to-top
+- Bottom row: social icons (LinkedIn, Facebook, Instagram), copyright
 
 ## Logo Assets (public/)
 
@@ -122,10 +126,15 @@ All links across the site use the same hover pattern:
 |------|-------|
 | `h-eadx-logo.svg` | Header on light/solid backgrounds |
 | `h-eadx-logo-negavitve.svg` | Header (transparent/over video), header dark mode, footer |
-| `h-eadx-logo-white.svg` | Legacy white logo (unused in components, kept in public/) |
-| `eadx-avatar.svg` | Favicon, site icon |
-| `eadx-avatar-dark.svg` / `eadx-avatar-white.svg` | Avatar variants |
-| `v-01-*`, `v-02-*` | Vertical logo variants |
+| `eadx-avatar.svg` | Favicon, site icon, decorative watermarks on homepage |
+| `v-01-eadx-logo.svg` | "EADX always on your side" section (light mode) |
+| `v-01-eadx-logo-negative.svg` | "We are EADX" + "EADX always on your side" sections (dark mode) |
+
+## Performance
+
+- **Video loading**: Hero video uses `preload="metadata"` (not `auto`) to avoid downloading the full file on page load; second video uses `preload="none"`
+- **Scroll handler**: Header scroll detection uses `requestAnimationFrame` throttling with cached DOM queries (hero section boundary computed once on mount)
+- **Package imports**: `experimental.optimizePackageImports` in `next.config.ts` tree-shakes `@mdx-js/mdx` and `@mdx-js/react`
 
 ## Security
 

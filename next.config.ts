@@ -4,6 +4,9 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ["@mdx-js/mdx", "@mdx-js/react"],
+  },
   async headers() {
     return [
       {

@@ -9,7 +9,22 @@
       "Bash(cd /g/projects/eadx/eadx && npm install @mdx-js/mdx 2>&1)",
       "Bash(cd /g/projects/eadx/eadx && npm run build 2>&1)",
       "Bash(cd /g/projects/eadx/eadx && npm run lint 2>&1)",
-      "Bash(cd /g/projects/eadx/eadx && npm run lint 2>&1 && npm run build 2>&1)"
+      "Bash(cd /g/projects/eadx/eadx && npm run lint 2>&1 && npm run build 2>&1)",
+      "mcp__claude_ai_Figma__get_design_context",
+      "Bash(wc:*)",
+      "mcp__claude_ai_Figma__whoami",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "mcp__claude_ai_Figma__get_metadata",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(npm run:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm install:*)",
+      "Bash(node:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:security.snyk.io)",
+      "Bash(ls:*)",
+      "Bash(rm:*)"
     ]
   }
 }

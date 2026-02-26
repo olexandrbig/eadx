@@ -13,26 +13,34 @@ interface HeaderClientProps {
 export function HeaderClient({ navigation }: HeaderClientProps) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const hasHero = pathname === "/" || pathname === "/contact";
 
   useEffect(() => {
+    // Cache hero section boundary once on mount
+    const heroSections = document.querySelectorAll("section.h-screen");
+    let heroEnd = 50;
+    if (heroSections.length > 0) {
+      const last = heroSections[heroSections.length - 1] as HTMLElement;
+      heroEnd = last.offsetTop + last.offsetHeight - 80;
+    }
+
+    let rafId = 0;
     const onScroll = () => {
-      // Stay transparent through all full-screen hero sections
-      const heroSections = document.querySelectorAll("section.h-screen");
-      const heroEnd =
-        heroSections.length > 0
-          ? (heroSections[heroSections.length - 1] as HTMLElement).offsetTop +
-            (heroSections[heroSections.length - 1] as HTMLElement).offsetHeight -
-            80
-          : 50;
-      setScrolled(window.scrollY > heroEnd);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > heroEnd);
+        rafId = 0;
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
-  const transparent = isHome && !scrolled;
+  const transparent = hasHero && !scrolled;
 
   return (
     <header

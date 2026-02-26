@@ -2,42 +2,37 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export interface PostMeta {
+export interface ServiceMeta {
   slug: string;
   title: string;
-  date: string;
   excerpt: string;
-  author: string;
+  image: string;
 }
 
-const postsDirectory = path.join(process.cwd(), "src/content/posts");
+const servicesDirectory = path.join(process.cwd(), "src/content/services");
 
-export function getAllPosts(): PostMeta[] {
-  const files = fs.readdirSync(postsDirectory);
+export function getAllServices(): ServiceMeta[] {
+  const files = fs.readdirSync(servicesDirectory);
 
-  const posts = files
+  return files
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => {
       const slug = file.replace(/\.mdx$/, "");
-      const fullPath = path.join(postsDirectory, file);
+      const fullPath = path.join(servicesDirectory, file);
       const content = fs.readFileSync(fullPath, "utf-8");
       const { data } = matter(content);
 
       return {
         slug,
         title: data.title ?? slug,
-        date: data.date ?? "",
         excerpt: data.excerpt ?? "",
-        author: data.author ?? "",
+        image: data.image ?? "",
       };
-    })
-    .sort((a, b) => (a.date > b.date ? -1 : 1));
-
-  return posts;
+    });
 }
 
-export function getPostBySlug(slug: string) {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+export function getServiceBySlug(slug: string) {
+  const fullPath = path.join(servicesDirectory, `${slug}.mdx`);
   const content = fs.readFileSync(fullPath, "utf-8");
   const { data, content: body } = matter(content);
 
@@ -45,16 +40,15 @@ export function getPostBySlug(slug: string) {
     meta: {
       slug,
       title: data.title ?? slug,
-      date: data.date ?? "",
       excerpt: data.excerpt ?? "",
-      author: data.author ?? "",
+      image: data.image ?? "",
     },
     body,
   };
 }
 
-export function getAllPostSlugs(): string[] {
-  const files = fs.readdirSync(postsDirectory);
+export function getAllServiceSlugs(): string[] {
+  const files = fs.readdirSync(servicesDirectory);
   return files
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(/\.mdx$/, ""));

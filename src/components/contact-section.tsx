@@ -1,56 +1,47 @@
+import Image from "next/image";
 import { ContactForm } from "@/components/contact-form";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  className?: string;
+}
+
+export function ContactSection({ className }: ContactSectionProps) {
   return (
-    <section id="contact" className="bg-zinc-100 dark:bg-zinc-900">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Left — heading + description */}
-          <div>
-            <h2 className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl">
-              Contact us!
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-              Do you have questions about our enterprise integration services?
-              We are happy to help you!
-            </p>
-            <div className="mt-10 flex flex-col gap-4 text-base text-zinc-600 dark:text-zinc-400">
-              <div>
-                <p className="font-semibold text-zinc-950 dark:text-zinc-50">
-                  Address
-                </p>
-                <p>40 Boulevard &quot;Tsarigradsko shose&quot;</p>
-                <p>Europark, floor 8</p>
-                <p>Mladost 1, Sofia 1750, Bulgaria</p>
-              </div>
-              <div>
-                <p className="font-semibold text-zinc-950 dark:text-zinc-50">
-                  Phone
-                </p>
-                <a
-                  href="tel:+359882001282"
-                  className="underline-offset-4 decoration-accent decoration-2 transition-all hover:underline"
-                >
-                  +359 882 001 282
-                </a>
-              </div>
-              <div>
-                <p className="font-semibold text-zinc-950 dark:text-zinc-50">
-                  E-mail
-                </p>
-                <a
-                  href="mailto:info@eadx.com"
-                  className="underline-offset-4 decoration-accent decoration-2 transition-all hover:underline"
-                >
-                  info@eadx.com
-                </a>
-              </div>
-            </div>
+    <section id="contact" className={`bg-white dark:bg-zinc-950 ${className ?? ""}`}>
+      <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
+        <div className="grid items-end gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+          {/* Decorative logo watermark — bottom aligned with submit button */}
+          <div className="hidden items-end justify-center lg:flex">
+            <Image
+              src="/eadx-avatar.svg"
+              alt=""
+              width={350}
+              height={350}
+              className="dark:hidden"
+              aria-hidden="true"
+            />
+            <Image
+              src="/eadx-avatar.svg"
+              alt=""
+              width={350}
+              height={350}
+              className="hidden dark:block"
+              aria-hidden="true"
+            />
           </div>
 
-          {/* Right — form */}
+          {/* Heading + Form */}
           <div>
-            <ContactForm />
+            <h2 className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl lg:text-[48px]">
+              Contact us
+            </h2>
+            <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+              Do you have questions about how our services? We are happy to help
+              you!
+            </p>
+            <div className="mt-10">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
