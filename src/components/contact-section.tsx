@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { ContactForm } from "@/components/contact-form";
+import dynamic from "next/dynamic";
+
+const ContactForm = dynamic(() =>
+  import("@/components/contact-form").then((m) => m.ContactForm),
+);
 
 interface ContactSectionProps {
   className?: string;

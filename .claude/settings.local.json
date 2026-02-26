@@ -24,7 +24,8 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:security.snyk.io)",
       "Bash(ls:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(ANALYZE=true npm run:*)"
     ]
   }
 }

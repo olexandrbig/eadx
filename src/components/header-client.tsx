@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MobileMenu } from "@/components/mobile-menu";
+import dynamic from "next/dynamic";
+
+const MobileMenu = dynamic(() =>
+  import("@/components/mobile-menu").then((m) => m.MobileMenu),
+);
 
 interface HeaderClientProps {
   navigation: { name: string; href: string }[];
