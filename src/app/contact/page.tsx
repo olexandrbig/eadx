@@ -14,7 +14,7 @@ export default function ContactPage() {
       {/* Hero — full screen with background image */}
       <section className="relative flex h-[90vh] items-end overflow-hidden pb-9">
         <Image
-          src="/contact-page.png"
+          src="/contacts.jpg"
           alt=""
           fill
           className="object-cover"

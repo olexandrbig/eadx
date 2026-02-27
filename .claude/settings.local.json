@@ -25,7 +25,9 @@
       "WebFetch(domain:security.snyk.io)",
       "Bash(ls:*)",
       "Bash(rm:*)",
-      "Bash(ANALYZE=true npm run:*)"
+      "Bash(ANALYZE=true npm run:*)",
+      "Bash(xargs grep:*)",
+      "Bash(ffmpeg:*)"
     ]
   }
 }

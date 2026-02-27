@@ -19,7 +19,8 @@ export default function Home() {
           preload="metadata"
           className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src="/hero-video-1.mp4" type="video/mp4" />
+          <source src="/jump.webm" type="video/webm" />
+          <source src="/jump.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50" />
 
@@ -85,7 +86,8 @@ export default function Home() {
           preload="none"
           className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src="/hero-video-2.mp4" type="video/mp4" />
+          <source src="/globe.webm" type="video/webm" />
+          <source src="/globe.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
@@ -151,12 +153,14 @@ export default function Home() {
                 className="group relative aspect-[4/3] overflow-hidden rounded-lg"
               >
                 <div className="absolute inset-0 bg-zinc-300 dark:bg-zinc-700">
-                  <Image
-                    src="/service1.png"
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {service.image && (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-right">

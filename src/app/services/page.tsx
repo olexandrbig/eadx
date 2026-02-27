@@ -25,12 +25,14 @@ export default function ServicesPage() {
               className="group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-md dark:bg-zinc-900"
             >
               <div className="relative aspect-[4/3] bg-zinc-300 dark:bg-zinc-700">
-                <Image
-                  src="/service1.png"
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {service.image && (
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h2 className="text-xl font-bold text-white">
