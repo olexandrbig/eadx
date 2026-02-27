@@ -44,18 +44,18 @@ export default function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="flex items-center justify-center">
               <Image
-                src="/eadx-avatar.svg"
+                src="/eadx-x.svg"
                 alt="EADX"
-                width={400}
-                height={400}
-                className="h-auto w-full max-w-[400px] dark:hidden"
+                width={340}
+                height={360}
+                className="h-auto w-full max-w-[340px] dark:hidden"
               />
               <Image
-                src="/v-01-eadx-logo-negative.svg"
+                src="/eadx-x-negative.svg"
                 alt="EADX"
-                width={400}
-                height={400}
-                className="hidden h-auto w-full max-w-[400px] dark:block"
+                width={340}
+                height={360}
+                className="hidden h-auto w-full max-w-[340px] dark:block"
               />
             </div>
             <div>

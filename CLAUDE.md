@@ -28,7 +28,7 @@ App Router with `src/` directory. All routes under `src/app/`:
 | `/` | Homepage — hero video, about sections, global reach, services cards, contact form |
 | `/services` | Services listing page |
 | `/services/[slug]` | Individual service page (SSG via `generateStaticParams`) |
-| `/contact` | Contact page with form |
+| `/contact` | Contact page with hero image (`contacts.jpg`) and form |
 | `/company` | Company info (MDX) |
 | `/career` | Career page (Coming Soon, MDX) |
 | `/terms` | Terms and Conditions (MDX) |
@@ -61,11 +61,11 @@ Split into server and client parts for scroll-aware behavior:
 
 ### Homepage Sections
 
-1. **Hero section** — full viewport (`h-screen`), background video (`hero-video-1.mp4`), left-aligned heading + subtitle, scroll indicator on right
-2. **"We are EADX"** — white bg, two-column: left = large avatar logo, right = heading + body text
-3. **"Global reach, local expertise"** — full-width background video, dark gradient overlay, text at bottom-left
+1. **Hero section** — full viewport (`h-screen`), background video (`jump.mp4`/`.webm`), left-aligned heading + subtitle, scroll indicator on right
+2. **"We are EADX"** — white bg, two-column: left = stylized X from logo (`eadx-x.svg` / `eadx-x-negative.svg`), right = heading + body text
+3. **"Global reach, local expertise"** — full-width background video (`globe.mp4`/`.webm`), dark gradient overlay, text at bottom-left
 4. **"EADX always on your side"** — white bg, two-column: left = vertical logo, right = heading + body text
-5. **"Learn more about our services"** — light gray bg, 3 image cards linking to service pages
+5. **"Learn more about our services"** — light gray bg, 3 image cards (from service MDX frontmatter `image` field) linking to service pages
 6. **Contact section** — centered heading, decorative logo watermark, redesigned form
 
 ### Services
@@ -127,12 +127,14 @@ All links across the site use the same hover pattern:
 | `h-eadx-logo.svg` | Header on light/solid backgrounds |
 | `h-eadx-logo-negavitve.svg` | Header (transparent/over video), header dark mode, footer |
 | `eadx-avatar.svg` | Favicon, site icon, decorative watermarks on homepage |
+| `eadx-x.svg` | "We are EADX" section (light mode) — stylized X with `#2E2D2D` left strokes |
+| `eadx-x-negative.svg` | "We are EADX" section (dark mode) — stylized X with white left strokes |
 | `v-01-eadx-logo.svg` | "EADX always on your side" section (light mode) |
-| `v-01-eadx-logo-negative.svg` | "We are EADX" + "EADX always on your side" sections (dark mode) |
+| `v-01-eadx-logo-negative.svg` | "EADX always on your side" section (dark mode) |
 
 ## Performance
 
-- **Video loading**: Hero video uses `preload="metadata"` (not `auto`) to avoid downloading the full file on page load; second video uses `preload="none"`
+- **Video loading**: Hero video (`jump`) uses `preload="metadata"` (not `auto`) to avoid downloading the full file on page load; second video (`globe`) uses `preload="none"`
 - **Scroll handler**: Header scroll detection uses `requestAnimationFrame` throttling with cached DOM queries (hero section boundary computed once on mount)
 - **Package imports**: `experimental.optimizePackageImports` in `next.config.ts` tree-shakes `@mdx-js/mdx` and `@mdx-js/react`
 
@@ -147,5 +149,6 @@ Headers configured in `next.config.ts`: CSP, HSTS, X-Frame-Options, X-Content-Ty
 - All imports use `@/*` alias mapping to `src/*`
 - Navigation items are defined in `src/components/header.tsx` — update there to change nav
 - Footer links are defined at the top of `src/components/footer.tsx`
-- Background videos go in `public/` as `.mp4` files
+- Background videos go in `public/` as `.mp4` + `.webm` files (webm preferred, mp4 fallback)
+- Service card images are defined in MDX frontmatter (`image` field) — change in one place
 - Content is always MDX in `src/content/` — never hardcode long-form text in components
