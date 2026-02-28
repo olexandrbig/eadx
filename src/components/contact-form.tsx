@@ -8,16 +8,48 @@ const inputClass =
 
 export function ContactForm() {
   const [agreed, setAgreed] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!agreed) return;
-    // TODO: integrate with backend / email service
-    setSubmitted(true);
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.get("firstName"),
+          lastName: formData.get("lastName"),
+          company: formData.get("company"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong. Please try again later.",
+      );
+    }
   }
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="flex min-h-[400px] items-center justify-center rounded-2xl bg-zinc-100 p-12 dark:bg-zinc-900">
         <div className="text-center">
@@ -48,75 +80,81 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <fieldset disabled={status === "loading"} className="flex flex-col gap-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First name*"
+            required
+            className={inputClass}
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last name*"
+            required
+            className={inputClass}
+          />
+        </div>
         <input
           type="text"
-          name="firstName"
-          placeholder="First name*"
+          name="company"
+          placeholder="Your company*"
           required
           className={inputClass}
         />
         <input
-          type="text"
-          name="lastName"
-          placeholder="Last name*"
+          type="email"
+          name="email"
+          placeholder="Your email address*"
           required
           className={inputClass}
         />
-      </div>
-      <input
-        type="text"
-        name="company"
-        placeholder="Your company*"
-        required
-        className={inputClass}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Your email address*"
-        required
-        className={inputClass}
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone number"
-        className={inputClass}
-      />
-      <textarea
-        name="message"
-        placeholder="Your message"
-        rows={5}
-        className="w-full rounded-lg bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-accent dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:ring-accent-light"
-      />
-
-      <label className="flex cursor-pointer items-start gap-3 py-2">
         <input
-          type="checkbox"
-          checked={agreed}
-          onChange={(e) => setAgreed(e.target.checked)}
-          className="mt-1 h-5 w-5 shrink-0 cursor-pointer appearance-none rounded border-2 border-zinc-300 bg-white checked:border-accent checked:bg-accent dark:border-zinc-600 dark:bg-zinc-800 dark:checked:border-accent-light dark:checked:bg-accent-light"
+          type="tel"
+          name="phone"
+          placeholder="Phone number"
+          className={inputClass}
         />
-        <span className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-          I agree that my personal data will be processed in accordance with the{" "}
-          <Link
-            href="/privacy"
-            className="font-medium text-accent underline-offset-4 decoration-accent decoration-2 transition-all hover:underline dark:text-accent-light dark:decoration-accent-light"
-          >
-            Privacy Policy
-          </Link>
-          .
-        </span>
-      </label>
+        <textarea
+          name="message"
+          placeholder="Your message"
+          rows={5}
+          className="w-full rounded-lg bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-accent dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:ring-accent-light"
+        />
 
-      <button
-        type="submit"
-        disabled={!agreed}
-        className="mt-2 w-full cursor-pointer rounded-lg bg-accent px-8 py-4 text-base font-semibold text-white transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        Send message
-      </button>
+        <label className="flex cursor-pointer items-start gap-3 py-2">
+          <input
+            type="checkbox"
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            className="mt-1 h-5 w-5 shrink-0 cursor-pointer appearance-none rounded border-2 border-zinc-300 bg-white checked:border-accent checked:bg-accent dark:border-zinc-600 dark:bg-zinc-800 dark:checked:border-accent-light dark:checked:bg-accent-light"
+          />
+          <span className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+            I agree that my personal data will be processed in accordance with the{" "}
+            <Link
+              href="/privacy"
+              className="font-medium text-accent underline-offset-4 decoration-accent decoration-2 transition-all hover:underline dark:text-accent-light dark:decoration-accent-light"
+            >
+              Privacy Policy
+            </Link>
+            .
+          </span>
+        </label>
+
+        {status === "error" && (
+          <p className="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>
+        )}
+
+        <button
+          type="submit"
+          disabled={!agreed || status === "loading"}
+          className="mt-2 w-full cursor-pointer rounded-lg bg-accent px-8 py-4 text-base font-semibold text-white transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {status === "loading" ? "Sending..." : "Send message"}
+        </button>
+      </fieldset>
     </form>
   );
 }

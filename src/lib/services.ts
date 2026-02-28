@@ -7,6 +7,7 @@ export interface ServiceMeta {
   title: string;
   excerpt: string;
   image: string;
+  order: number;
 }
 
 const servicesDirectory = path.join(process.cwd(), "src/content/services");
@@ -27,8 +28,10 @@ export function getAllServices(): ServiceMeta[] {
         title: data.title ?? slug,
         excerpt: data.excerpt ?? "",
         image: data.image ?? "",
+        order: (data.order as number) ?? 0,
       };
-    });
+    })
+    .sort((a, b) => a.order - b.order);
 }
 
 export function getServiceBySlug(slug: string) {

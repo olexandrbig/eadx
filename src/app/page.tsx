@@ -123,7 +123,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <h2 className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl lg:text-[48px]">
+              <h2 className="whitespace-nowrap text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl lg:text-[48px]">
                 EADX always on your side
               </h2>
               <p className="mt-8 text-lg font-medium leading-relaxed text-zinc-700 dark:text-zinc-300 lg:text-[20px]">
