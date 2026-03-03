@@ -175,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* Section 6 — Contact */}
-      <ContactSection />
+      <ContactSection origin="Homepage" />
     </>
   );
 }

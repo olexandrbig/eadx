@@ -48,7 +48,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact form section */}
-      <ContactSection className="[&>div]:pt-0 [&>div]:lg:pt-0" />
+      <ContactSection className="[&>div]:pt-0 [&>div]:lg:pt-0" origin="Contact" />
     </main>
   );
 }

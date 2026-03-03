@@ -6,7 +6,11 @@ import Link from "next/link";
 const inputClass =
   "w-full rounded-lg bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-accent dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:ring-accent-light";
 
-export function ContactForm() {
+interface ContactFormProps {
+  origin?: string;
+}
+
+export function ContactForm({ origin = "Homepage" }: ContactFormProps) {
   const [agreed, setAgreed] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,6 +36,7 @@ export function ContactForm() {
           email: formData.get("email"),
           phone: formData.get("phone"),
           message: formData.get("message"),
+          origin,
         }),
       });
 

@@ -5,6 +5,13 @@ export interface ContactFormData {
   email: string;
   phone?: string;
   message?: string;
+  origin?: string;
+}
+
+export interface GeoData {
+  country?: string;
+  region?: string;
+  city?: string;
 }
 
 let cachedToken: string | null = null;
@@ -60,7 +67,7 @@ async function getAccessToken(): Promise<string> {
   return token;
 }
 
-export async function createLead(formData: ContactFormData): Promise<void> {
+export async function createLead(formData: ContactFormData, geo?: GeoData): Promise<void> {
   const apiDomain = process.env.ZOHO_API_DOMAIN || "www.zohoapis.eu";
   const accessToken = await getAccessToken();
 
@@ -75,9 +82,21 @@ export async function createLead(formData: ContactFormData): Promise<void> {
   if (formData.phone) {
     leadData.Phone = formData.phone;
   }
-  if (formData.message) {
-    leadData.Description = formData.message;
+
+  const descriptionParts: string[] = [];
+  if (formData.origin) {
+    descriptionParts.push(`[Source Page: ${formData.origin}]`);
   }
+  if (formData.message) {
+    descriptionParts.push(formData.message);
+  }
+  if (descriptionParts.length > 0) {
+    leadData.Description = descriptionParts.join("\n\n");
+  }
+
+  if (geo?.country) leadData.Country = geo.country;
+  if (geo?.city) leadData.City = geo.city;
+  if (geo?.region) leadData.State = geo.region;
 
   const res = await fetch(`https://${apiDomain}/crm/v7/Leads`, {
     method: "POST",

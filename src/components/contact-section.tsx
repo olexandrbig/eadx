@@ -7,12 +7,15 @@ const ContactForm = dynamic(() =>
 
 interface ContactSectionProps {
   className?: string;
+  origin?: string;
+  hideSubtitle?: boolean;
+  hideHeading?: boolean;
 }
 
-export function ContactSection({ className }: ContactSectionProps) {
+export function ContactSection({ className, origin, hideSubtitle, hideHeading }: ContactSectionProps) {
   return (
     <section id="contact" className={`bg-white dark:bg-zinc-950 ${className ?? ""}`}>
-      <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
+      <div className={`mx-auto max-w-7xl px-8 lg:px-12 ${hideHeading ? "py-12 lg:py-16" : "py-24 lg:py-32"}`}>
         <div className="grid items-end gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
           {/* Decorative logo watermark — bottom aligned with submit button */}
           <div className="hidden items-end justify-center lg:flex">
@@ -36,15 +39,19 @@ export function ContactSection({ className }: ContactSectionProps) {
 
           {/* Heading + Form */}
           <div>
-            <h2 className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl lg:text-[48px]">
-              Contact us
-            </h2>
-            <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-              Do you have questions about how our services? We are happy to help
-              you!
-            </p>
-            <div className="mt-10">
-              <ContactForm />
+            {!hideHeading && (
+              <h2 className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl lg:text-[48px]">
+                Contact us
+              </h2>
+            )}
+            {!hideSubtitle && (
+              <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+                Do you have questions about how our services? We are happy to
+                help you!
+              </p>
+            )}
+            <div className={hideHeading ? "mt-0" : "mt-10"}>
+              <ContactForm origin={origin} />
             </div>
           </div>
         </div>

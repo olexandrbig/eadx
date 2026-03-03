@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createLead, type ContactFormData } from "@/lib/zoho";
+import { createLead, type ContactFormData, type GeoData } from "@/lib/zoho";
 
 const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
 
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const phone = sanitize(typeof body.phone === "string" ? body.phone.trim() : "");
   const message = sanitize(typeof body.message === "string" ? body.message.trim() : "", true);
+  const origin = sanitize(typeof body.origin === "string" ? body.origin.trim().slice(0, 100) : "");
 
   if (!firstName || !lastName || !company || !email) {
     return NextResponse.json(
@@ -77,10 +78,18 @@ export async function POST(request: Request) {
     email,
     ...(phone && { phone }),
     ...(message && { message }),
+    ...(origin && { origin }),
+  };
+
+  const headers = request.headers;
+  const geo: GeoData = {
+    country: headers.get("x-vercel-ip-country") || headers.get("cf-ipcountry") || undefined,
+    city: headers.get("x-vercel-ip-city") || undefined,
+    region: headers.get("x-vercel-ip-country-region") || undefined,
   };
 
   try {
-    await createLead(formData);
+    await createLead(formData, geo);
   } catch (err) {
     console.error("Zoho CRM error:", err);
     return NextResponse.json(
