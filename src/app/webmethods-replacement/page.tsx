@@ -89,56 +89,57 @@ export default function VivaPage() {
   return (
     <main>
       {/* Section 1 — Challenges */}
-      <section className="bg-white pt-32 dark:bg-zinc-950">
-        <div className="mx-auto max-w-7xl px-8 py-16 lg:px-12 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-accent dark:text-accent-light">
-                Viva
-              </p>
-              <h1 className="mt-3 text-3xl font-normal leading-tight tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px] lg:leading-snug">
-                Common challenges of high{" "}
-                <strong className="font-bold">cost and operational risk</strong>{" "}
-                for webMethods Platform users
-              </h1>
-              <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-                Organisations relying on webMethods for enterprise integration
-                face a convergence of pressures:
-              </p>
-              <ul className="mt-3 space-y-3 pl-4 text-sm text-zinc-700 dark:text-zinc-300">
-                {[
-                  "Significant licence costs",
-                  "Significant operations costs (compute, service)",
-                  "Overhead from constant upgrades and support",
-                  "Growing architectural complexity (ESB, webMethods.io, SaaS, WhIP)",
-                  "Lacking new capabilities and innovation",
-                ].map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-                Transitioning to a modern, vendor-independent integration
-                platform enables enterprises to substantially{" "}
-                <strong className="font-semibold text-zinc-950 dark:text-zinc-50">
-                  reduce total cost of ownership
-                </strong>
-                , eliminate vendor dependency / lock-in, and establish a more
-                resilient, future-proof and innovative foundation taking
-                advantage of growing AI potential in the integration space.
-              </p>
-            </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/viva-cogs.svg"
-                alt="Integration gears"
-                width={400}
-                height={400}
-                className="h-auto w-full max-w-[400px] dark:brightness-0 dark:invert"
-              />
-            </div>
+      <section className="flex min-h-screen bg-white pt-20 dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-8 py-4 lg:px-12 lg:py-8">
+          {/* Title spanning ~90% width */}
+          <div className="max-w-[90%]">
+            <p className="text-sm font-semibold tracking-wider text-accent dark:text-accent-light">
+              Viva
+            </p>
+            <h1 className="mt-3 text-[40px] font-normal leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[56px] lg:text-[72px]">
+              Common challenges of high{" "}
+              <strong className="font-bold">cost and operational risk</strong>{" "}
+              for webMethods Platform users
+            </h1>
+          </div>
+
+          {/* Text with cogs floating right */}
+          <div className="mt-12">
+            <Image
+              src="/viva-cogs.svg"
+              alt="Integration gears"
+              width={500}
+              height={500}
+              className="float-right ml-8 mb-4 h-auto w-[280px] dark:brightness-0 dark:invert sm:w-[360px] lg:w-[650px]"
+            />
+            <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              Organisations relying on webMethods for enterprise integration
+              face a convergence of pressures:
+            </p>
+            <ul className="mt-3 space-y-3 pl-4 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+              {[
+                "Significant licence costs",
+                "Significant operations costs (compute, service)",
+                "Overhead from constant upgrades and support",
+                "Growing architectural complexity (ESB, webMethods.io, SaaS, WhIP)",
+                "Lacking new capabilities and innovation",
+              ].map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              Transitioning to a modern, vendor-independent integration
+              platform enables enterprises to substantially{" "}
+              <strong className="font-semibold text-zinc-950 dark:text-zinc-50">
+                reduce total cost of ownership
+              </strong>
+              , eliminate vendor dependency / lock-in, and establish a more
+              resilient, future-proof and innovative foundation taking
+              advantage of growing AI potential in the integration space.
+            </p>
           </div>
         </div>
       </section>
@@ -155,7 +156,7 @@ export default function VivaPage() {
               className="w-full rounded-xl"
             />
             <div>
-              <p className="text-xl font-medium leading-relaxed text-zinc-700 dark:text-zinc-300 lg:text-2xl">
+              <p className="text-[24px] font-semibold leading-[160%] text-zinc-700 dark:text-zinc-300 sm:text-[30px] lg:text-[36px]">
                 The cost of operating an enterprise integration platform can be
                 decreased significantly by removing additional license capacity
                 costs (CapEx) and lowering support and operations costs (OpEx).
@@ -168,18 +169,15 @@ export default function VivaPage() {
       {/* Section 3 — Viva solution */}
       <section className="bg-white dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
-          <h2 className="max-w-5xl text-3xl font-bold leading-tight tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px] lg:leading-snug">
+          <h2 className="max-w-6xl text-[32px] font-normal leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[44px] lg:text-[60px]">
             Simplify and modernize your integration platform for{" "}
             <strong className="font-bold">
               lower cost and ease of operations
             </strong>{" "}
             with EADX Viva
           </h2>
-          <p className="mt-6 max-w-4xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            <strong className="font-semibold text-zinc-950 dark:text-zinc-50">
-              EADX Viva
-            </strong>{" "}
-            is our AI powered migration solution that autoconverts your
+          <p className="mt-6 max-w-6xl text-2xl leading-[160%] text-zinc-950 dark:text-zinc-50">
+            <strong className="font-bold">EADX Viva</strong> is our AI powered migration solution that autoconverts your
             webMethods Integration Server into a regular Java server, where
             integration flows and adapters are translated to Apache Camel and
             Java based components:
@@ -196,7 +194,7 @@ export default function VivaPage() {
               <FlowArrow />
             </div>
             {/* Viva box */}
-            <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl border-2 border-accent bg-white p-8 dark:border-accent-light dark:bg-zinc-950 lg:h-56 lg:flex-[0.8]">
+            <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl border-2 border-accent bg-white p-8 dark:border-accent-light dark:bg-zinc-950 lg:h-56 lg:flex-[0.6]">
               <span className="text-2xl font-bold text-accent dark:text-accent-light">
                 Viva
               </span>
@@ -218,7 +216,7 @@ export default function VivaPage() {
             </div>
           </div>
 
-          <p className="mt-12 max-w-5xl text-lg font-medium leading-relaxed text-zinc-700 dark:text-zinc-300 lg:text-xl">
+          <p className="mt-12 max-w-6xl text-[24px] font-semibold leading-[160%] text-zinc-700 dark:text-zinc-300 sm:text-[30px] lg:text-[36px]">
             The migration includes all components of the webMethods platform
             including messaging. Furthermore, the migration to a modern stack
             allows users to benefit from state of the art testing and CI/CD
@@ -279,14 +277,14 @@ export default function VivaPage() {
       {/* Section 5 — Performance */}
       <section className="bg-white dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
-          <h2 className="max-w-5xl text-3xl font-bold leading-tight tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px] lg:leading-snug">
+          <h2 className="max-w-6xl text-[32px] font-normal leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[44px] lg:text-[60px]">
             Benefit from{" "}
             <strong className="font-bold">
               high performance and scalability
             </strong>{" "}
             through use of modern technology
           </h2>
-          <p className="mt-6 max-w-5xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 max-w-6xl text-2xl leading-[160%] text-zinc-600 dark:text-zinc-400">
             webMethods&apos;s internal architecture (flow execution engine) is
             more than challenged to match the performance requirements of
             today&apos;s AI driven workflows. Use highly optimized Java code to
@@ -296,7 +294,7 @@ export default function VivaPage() {
 
           <div className="mt-16 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
-              <p className="text-xl font-medium leading-relaxed text-zinc-700 dark:text-zinc-300 lg:text-2xl">
+              <p className="text-[24px] font-semibold leading-[160%] text-zinc-700 dark:text-zinc-300 sm:text-[30px] lg:text-[36px]">
                 By migration webMethods Integration Server flow code to native
                 Java, your integrations experience 8 &ndash; 15 fold increase in
                 performance and scalability
@@ -316,11 +314,11 @@ export default function VivaPage() {
       {/* Section 6 — Migration approach */}
       <section className="bg-zinc-100 dark:bg-zinc-900">
         <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
-          <h2 className="max-w-5xl text-3xl font-bold leading-tight tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px] lg:leading-snug">
+          <h2 className="max-w-6xl text-[32px] font-normal leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[44px] lg:text-[60px]">
             Modernize your integration platform using a risk averse{" "}
             <strong className="font-bold">structured migration approach</strong>
           </h2>
-          <p className="mt-6 max-w-5xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 max-w-6xl text-2xl leading-[160%] text-zinc-600 dark:text-zinc-400">
             In addition to Viva&apos;s auto conversion AI, EADX&apos;s
             structured migration approach further reduces migration risk by
             leveraging our decades of webMethods team experience to migrate to a
@@ -334,20 +332,20 @@ export default function VivaPage() {
             {migrationSteps.map((step) => (
               <div
                 key={step.num}
-                className="relative mt-8 flex flex-col rounded-2xl bg-white pt-10 dark:bg-zinc-800"
+                className="relative mt-20 flex flex-col rounded-2xl bg-white pt-24 dark:bg-zinc-800"
               >
-                {/* Number circle — centered on top edge */}
-                <div className="absolute -top-8 left-8 flex h-16 w-16 items-center justify-center rounded-full border-[6px] border-zinc-100 bg-white text-3xl font-light text-zinc-400 dark:border-zinc-900 dark:bg-zinc-800 dark:text-zinc-500">
+                {/* Number circle — 120px inner + 12px border = 144px total */}
+                <div className="absolute -top-[72px] left-8 flex h-[144px] w-[144px] items-center justify-center rounded-full border-[12px] border-zinc-100 bg-white text-[48px] font-medium leading-[160%] text-zinc-400 dark:border-zinc-900 dark:bg-zinc-800 dark:text-zinc-500">
                   {step.num}
                 </div>
                 <div className="flex flex-1 flex-col px-8 pb-8">
                   <h3 className="text-xl font-bold tracking-wide text-accent dark:text-accent-light">
                     {step.title}
                   </h3>
-                  <ul className="mt-4 flex-1 space-y-2 text-base text-zinc-700 dark:text-zinc-300">
+                  <ul className="mt-4 flex-1 space-y-2 pl-4 text-lg leading-[160%] text-zinc-700 dark:text-zinc-300">
                     {step.items.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
                         {item}
                       </li>
                     ))}
@@ -382,20 +380,23 @@ export default function VivaPage() {
       {/* Section 7 — CTA + Contact */}
       <section className="bg-white dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-8 pt-24 lg:px-12 lg:pt-32">
-          <h2 className="max-w-4xl text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">
+          <h2 className="max-w-6xl text-[32px] font-normal leading-[120%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[44px] lg:text-[60px]">
             Get started with{" "}
             <strong className="font-bold">
-              free migration assessment consultation
-            </strong>
+              free migration assessment
+            </strong>{" "}
+            consultation
           </h2>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 max-w-6xl text-[24px] leading-[160%] text-zinc-600 dark:text-zinc-400 sm:text-[28px] lg:text-[32px]">
             We invite you to take advantage of your free migration assessment
             workshop to jointly discuss and create a dependable plan to move to a
             highly cost efficient modern integration platform.
           </p>
         </div>
       </section>
-      <ContactSection origin="Viva" hideSubtitle hideHeading />
+      <div className="mb-24 lg:mb-32">
+        <ContactSection origin="Viva" hideSubtitle hideHeading />
+      </div>
     </main>
   );
 }

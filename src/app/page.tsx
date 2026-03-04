@@ -150,7 +150,7 @@ export default function Home() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group relative aspect-[4/3] overflow-hidden rounded-lg"
+                className="group relative aspect-[4/3] overflow-hidden"
               >
                 <div className="absolute inset-0 bg-zinc-300 dark:bg-zinc-700">
                   {service.image && (

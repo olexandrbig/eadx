@@ -96,7 +96,7 @@ export default function EnterpriseIntegrationPage() {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 w-full max-w-8xl px-8 lg:px-12">
-          <h1 className="max-w-7xl text-4xl font-bold leading-[100%] tracking-tight text-white sm:text-5xl lg:text-[72px]">
+          <h1 className="max-w-8xl text-4xl font-bold leading-[100%] tracking-tight text-white sm:text-5xl lg:text-[72px]">
             Transform operational efficiency into strategic advantage
           </h1>
           <p className="mt-8 max-w-4xl text-lg font-medium leading-[160%] text-white/80 sm:text-xl lg:text-[28px]">
@@ -147,15 +147,15 @@ export default function EnterpriseIntegrationPage() {
 
       {/* Section 3 — Bill Gates Quote */}
       <section className="bg-zinc-100 dark:bg-zinc-900">
-        <div className="mx-auto max-w-5xl px-8 py-24 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-6xl px-8 py-24 lg:px-12 lg:py-32">
           <figure className="text-center">
             <blockquote>
-              <p className="text-2xl font-bold leading-snug tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl lg:text-[40px] lg:leading-snug">
+              <p className="text-[32px] font-medium leading-[160%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[40px] lg:text-[48px]">
                 &ldquo; Seamless integration of business processes and systems is
                 the foundation of a unified, high-performing enterprise.&rdquo;
               </p>
             </blockquote>
-            <figcaption className="relative mt-8 inline-block rounded-lg bg-white px-6 py-3 text-base font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+            <figcaption className="relative mt-8 inline-block rounded-lg bg-white px-6 py-3 text-2xl font-medium leading-[160%] text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
               <span className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-white dark:bg-zinc-800" />
               Bill Gates, Microsoft
             </figcaption>
@@ -193,11 +193,11 @@ export default function EnterpriseIntegrationPage() {
       {/* Section 5 — Age of AI */}
       <section className="bg-zinc-100 dark:bg-zinc-900">
         <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
-          <h2 className="max-w-4xl text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px] lg:leading-snug">
+          <h2 className="max-w-6xl text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px] lg:leading-snug">
             In the age of AI, Enterprise Integration becomes a top priority
             again
           </h2>
-          <p className="mt-8 max-w-5xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+          <p className="mt-8 max-w-6xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
             The success of any AI initiative ultimately depends on one thing
             &mdash; data. Its quality, consistency, and real-time availability
             determine whether AI delivers value or falls short. Enterprise
@@ -216,7 +216,7 @@ export default function EnterpriseIntegrationPage() {
           <h2 className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">
             Components of an Enterprise Integration Strategy
           </h2>
-          <p className="mt-8 max-w-5xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+          <p className="mt-8 max-w-6xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
             Enterprise Integration brings together the technologies, processes,
             and teams needed to seamlessly connect data, applications, and
             devices across your entire IT landscape. It encompasses system
@@ -273,10 +273,10 @@ export default function EnterpriseIntegrationPage() {
       {/* Section 7 — Right skillset & team */}
       <section className="bg-zinc-100 dark:bg-zinc-900">
         <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">
+          <h2 className="text-[32px] font-bold leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[44px] lg:text-[60px]">
             Enterprise Integration with the right skillset and team
           </h2>
-          <p className="mt-8 max-w-5xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+          <p className="mt-8 max-w-6xl text-[24px] leading-[160%] text-zinc-700 dark:text-zinc-300 sm:text-[28px] lg:text-[32px]">
             When bringing in a partner for system integration, make sure they
             bring real experience to the table. More often unfortunately, a team
             is compiled with either a &ldquo;talking head&rdquo; that leaves
@@ -285,7 +285,7 @@ export default function EnterpriseIntegrationPage() {
             replace real expertise with AI. In both cases, disaster is imminent.
           </p>
           <div className="mt-10 rounded-lg border border-zinc-300 px-8 py-8 text-center dark:border-zinc-600">
-            <p className="text-lg italic leading-relaxed text-zinc-700 dark:text-zinc-300">
+            <p className="text-[24px] font-semibold italic leading-[160%] text-zinc-700 dark:text-zinc-300 sm:text-[30px] lg:text-[36px]">
               At EADX, each of our clients is of paramount importance to us,
               <br />
               and all team members bring years of real-world enterprise
@@ -298,10 +298,10 @@ export default function EnterpriseIntegrationPage() {
       {/* Section 8 — Use Cases & Risks */}
       <section className="bg-white dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">
+          <h2 className="text-[32px] font-bold leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[44px] lg:text-[60px]">
             Enterprise Integration Use Cases and Risks
           </h2>
-          <div className="mt-8 max-w-5xl space-y-4 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+          <div className="mt-8 max-w-6xl space-y-4 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
             <p>
               When it comes to integration, a deep understanding of integration
               to the source or target system is essential for a successful
@@ -423,7 +423,23 @@ export default function EnterpriseIntegrationPage() {
         </div>
       </section>
 
-      {/* Section 10 — CTA + Contact */}
+      {/* Section 10 — Partners */}
+      <section className="bg-white dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-8 pt-16 lg:px-12 lg:pt-24">
+          <h2 className="text-3xl font-bold tracking-tight mb-12 text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">
+            Our trusted integration technology partner
+          </h2>
+          <Image
+            src="/partners.png"
+            alt="Our trusted integration technology partners: Snowflake, WSO2, Apache Camel, SAP, Databricks, Kong"
+            width={1600}
+            height={600}
+            className="w-full"
+          />
+        </div>
+      </section>
+
+      {/* Section 11 — CTA + Contact */}
       <section className="bg-white dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-8 pt-24 lg:px-12 lg:pt-32">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">

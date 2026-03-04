@@ -28,7 +28,8 @@
       "Bash(ANALYZE=true npm run:*)",
       "Bash(xargs grep:*)",
       "Bash(ffmpeg:*)",
-      "WebFetch(domain:www.zoho.com)"
+      "WebFetch(domain:www.zoho.com)",
+      "Bash(npx:*)"
     ]
   }
 }
