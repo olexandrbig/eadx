@@ -29,7 +29,8 @@
       "Bash(xargs grep:*)",
       "Bash(ffmpeg:*)",
       "WebFetch(domain:www.zoho.com)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(magick:*)"
     ]
   }
 }

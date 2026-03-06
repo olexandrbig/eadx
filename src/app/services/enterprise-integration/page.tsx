@@ -425,17 +425,33 @@ export default function EnterpriseIntegrationPage() {
 
       {/* Section 10 — Partners */}
       <section className="bg-white dark:bg-zinc-950">
-        <div className="mx-auto max-w-7xl px-8 pt-16 lg:px-12 lg:pt-24">
+        <div className="mx-auto max-w-7xl px-8 pt-16 pb-8 lg:px-12 lg:pt-24 lg:pb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-12 text-zinc-950 dark:text-zinc-50 sm:text-4xl lg:text-[40px]">
             Our trusted integration technology partner
           </h2>
-          <Image
-            src="/partners.png"
-            alt="Our trusted integration technology partners: Snowflake, WSO2, Apache Camel, SAP, Databricks, Kong"
-            width={1600}
-            height={600}
-            className="w-full"
-          />
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { src: "/partners/image 1.png", alt: "Snowflake", className: "h-16" },
+              { src: "/partners/image 2.png", alt: "WSO2", className: "h-16" },
+              { src: "/partners/image 7.png", alt: "IBM webMethods", className: "h-32" },
+              { src: "/partners/image 3.png", alt: "Apache Camel", className: "h-16" },
+              { src: "/partners/image 4.png", alt: "SAP", className: "h-16" },
+              { src: "/partners/image 6.png", alt: "Kong", className: "h-16" },
+            ].map((partner) => (
+              <div
+                key={partner.alt}
+                className="flex items-center justify-center rounded-xl bg-zinc-100 px-8 py-10"
+              >
+                <Image
+                  src={partner.src}
+                  alt={partner.alt}
+                  width={200}
+                  height={80}
+                  className={`${partner.className} w-auto object-contain`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
