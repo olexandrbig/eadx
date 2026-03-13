@@ -30,11 +30,12 @@ App Router with `src/` directory. All routes under `src/app/`:
 | `/services/[slug]` | Individual service page (SSG via `generateStaticParams`) |
 | `/contact` | Contact page with hero image (`contacts.jpg`) and form |
 | `/company` | Company info (MDX) |
-| `/career` | Career page (Coming Soon, MDX) |
+| `/career` | Career page — hero carousel, benefits grid, culture accordion, contact form |
 | `/terms` | Terms and Conditions (MDX) |
 | `/imprint` | Imprint / legal info (MDX) |
 | `/privacy` | Privacy Policy (MDX) |
 | `/compliance` | Compliance (MDX) |
+| `/webmethods-replacement` | EADX Viva — webMethods migration landing page |
 
 ### Content System
 
@@ -79,12 +80,12 @@ Split into server and client parts for scroll-aware behavior:
 
 - `contact-form.tsx` — client component: first name, last name, company, email, phone, message, privacy checkbox, submit button
 - `contact-section.tsx` — centered layout with heading, subtitle, decorative logo watermark, form
-- Form submit is client-side only (TODO: integrate with backend)
+- Form submits to `/api/contact` route handler which creates a lead in Zoho CRM (`src/lib/zoho.ts`)
 
 ### Legal Pages
 
 - `legal-page.tsx` — shared async component that reads MDX from `src/content/pages/` and renders it
-- Used by `/terms`, `/imprint`, `/privacy`, `/compliance`, `/company`, `/career`
+- Used by `/terms`, `/imprint`, `/privacy`, `/compliance`, `/company`
 
 ## Design System
 
@@ -98,7 +99,7 @@ Defined as CSS custom properties in `globals.css` and registered as Tailwind the
 | `--accent-light` / `accent-light` | `#80D6F2` | Light blue — links on dark backgrounds, hover states |
 
 ### Typography
-- Plus Jakarta Sans font via `next/font` (variable `--font-geist-sans`)
+- Plus Jakarta Sans font via `next/font` (variable `--font-plus-jakarta`)
 - Hero heading: 72px bold, 100% line-height
 - Hero subtitle: 28px medium, 160% line-height
 - Dark mode via `prefers-color-scheme` media query
@@ -152,3 +153,9 @@ Headers configured in `next.config.ts`: CSP, HSTS, X-Frame-Options, X-Content-Ty
 - Background videos go in `public/` as `.mp4` + `.webm` files (webm preferred, mp4 fallback)
 - Service card images are defined in MDX frontmatter (`image` field) — change in one place
 - Content is always MDX in `src/content/` — never hardcode long-form text in components
+
+## Agent Skills (`.agents/skills/`)
+
+- **next-best-practices** — Next.js best practices reference (RSC boundaries, async APIs, file conventions, data patterns, metadata, error handling). Use when writing or reviewing Next.js code.
+- **tailwind-design-system** — Tailwind CSS v4 patterns (`@theme`, CSS-first config, dark mode, component variants). Use when building or refactoring UI components.
+- **verification-before-completion** — Always run verification commands (`npm run lint`, `npm run build`, manual checks) before claiming work is complete. Evidence before assertions.

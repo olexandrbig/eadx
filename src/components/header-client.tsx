@@ -17,7 +17,10 @@ interface HeaderClientProps {
 export function HeaderClient({ navigation }: HeaderClientProps) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const hasHero = pathname === "/" || pathname === "/contact" || pathname === "/services/enterprise-integration";
+  const hasHero =
+    pathname === "/" ||
+    pathname === "/contact" ||
+    pathname === "/services/enterprise-integration";
 
   useEffect(() => {
     // Cache hero section boundary once on mount

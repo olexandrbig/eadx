@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-geist-sans",
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });

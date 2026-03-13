@@ -10,7 +10,9 @@ interface ContactFormProps {
   origin?: string;
 }
 
-export function ContactForm({ origin = "Homepage" }: ContactFormProps) {
+export function ContactForm({
+  origin = "Homepage",
+}: ContactFormProps) {
   const [agreed, setAgreed] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -126,7 +128,7 @@ export function ContactForm({ origin = "Homepage" }: ContactFormProps) {
           name="message"
           placeholder="Your message"
           rows={5}
-          className="w-full rounded-lg bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-accent dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:ring-accent-light"
+          className={inputClass}
         />
 
         <label className="flex cursor-pointer items-start gap-3 py-2">

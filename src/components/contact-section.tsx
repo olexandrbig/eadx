@@ -24,15 +24,6 @@ export function ContactSection({ className, origin, hideSubtitle, hideHeading }:
               alt=""
               width={350}
               height={350}
-              className="dark:hidden"
-              aria-hidden="true"
-            />
-            <Image
-              src="/eadx-avatar.svg"
-              alt=""
-              width={350}
-              height={350}
-              className="hidden dark:block"
               aria-hidden="true"
             />
           </div>
