@@ -10,7 +10,7 @@ interface PageProps {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = getAllServiceSlugs().filter((s) => s !== "enterprise-integration");
+  const slugs = getAllServiceSlugs().filter((s) => s !== "enterprise-integration" && s !== "data-and-ai");
   return slugs.map((slug) => ({ slug }));
 }
 

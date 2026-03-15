@@ -20,7 +20,8 @@ export function HeaderClient({ navigation }: HeaderClientProps) {
   const hasHero =
     pathname === "/" ||
     pathname === "/contact" ||
-    pathname === "/services/enterprise-integration";
+    pathname === "/services/enterprise-integration" ||
+    pathname === "/services/data-and-ai";
 
   useEffect(() => {
     // Cache hero section boundary once on mount
