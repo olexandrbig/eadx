@@ -422,7 +422,7 @@ export default function DataAndAiPage() {
                       <span className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-white dark:border-accent-light dark:bg-zinc-950">
                         <span className="h-2.5 w-2.5 rounded-full bg-accent dark:bg-accent-light" />
                       </span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-accent dark:text-accent-light whitespace-nowrap">
+                      <span className="text-xs font-bold uppercase tracking-wider text-accent dark:text-accent-light sm:whitespace-nowrap">
                         {row.tier}
                       </span>
                     </div>
