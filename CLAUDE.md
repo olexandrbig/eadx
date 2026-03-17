@@ -36,6 +36,7 @@ App Router with `src/` directory. All routes under `src/app/`:
 | `/privacy` | Privacy Policy (MDX) |
 | `/compliance` | Compliance (MDX) |
 | `/webmethods-replacement` | EADX Viva — webMethods migration landing page |
+| `/sappo-migration` | SAP PO to SAP Integration Suite (CPI) migration landing page |
 
 ### Content System
 

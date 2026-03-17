@@ -33,7 +33,8 @@
       "Bash(magick:*)",
       "WebFetch(domain:localhost)",
       "Bash(where npx:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(node -e \"require\\(''playwright''\\)\")"
     ]
   }
 }

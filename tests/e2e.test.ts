@@ -263,6 +263,65 @@ async function run() {
   await assertHasHeaderAndFooter();
   await screenshot("webmethods-replacement-light");
 
+  // ─── SAP PO Migration ──────────────────────────────────────────
+  console.log("\n  [SAP PO Migration] /sappo-migration\n");
+
+  await assertPageLoads("/sappo-migration", "SAP PO");
+  await assertHasHeading("SAP PO Migration to SAP Integration Suite (CPI)");
+  await assertHasHeading("SAP XI → SAP PI → SAP PO");
+  await assertHasHeading("Coming to an end");
+  await assertHasHeading("What are your migration options?");
+  await assertHasHeading("The SAP Integration Suite as your migration target platform");
+  await assertHasHeading("avoid paying for extended support");
+  await assertHasHeading("total cost of SAP CPI");
+  await assertHasHeading("The Migration Approach");
+  await assertHasHeading("Migration Tool Support");
+  await assertHasHeading("Can AI Make Your SAP PO Migration Faster and Safer?");
+  await assertHasHeading("Schedule free migration cost and effort assessment workshop");
+
+  await assert("has timeline with 7 year circles", async () => {
+    const circles = await page.$$eval(
+      "section:nth-of-type(2) .rounded-full.text-white.font-bold",
+      (els) => els.map((e) => e.textContent?.trim() ?? ""),
+    );
+    const years = ["2002", "2005", "2011", "2020", "2025", "2027", "2030"];
+    for (const y of years) {
+      if (!circles.includes(y)) throw new Error(`Missing year circle: ${y}`);
+    }
+  });
+
+  await assert("has migration options table with 3 options", async () => {
+    const options = await page.$$eval("td", (els) =>
+      els.map((e) => e.textContent?.trim() ?? ""),
+    );
+    if (!options.some((o) => o.includes("Option 1"))) throw new Error("Missing Option 1");
+    if (!options.some((o) => o.includes("Option 2"))) throw new Error("Missing Option 2");
+    if (!options.some((o) => o.includes("Option 3"))) throw new Error("Missing Option 3");
+  });
+
+  await assert("has license diagram", async () => {
+    const svgLines = await page.$$("svg line");
+    if (svgLines.length < 5) throw new Error(`Expected 5+ SVG lines, got ${svgLines.length}`);
+  });
+
+  await assert("has migration tool table with 3 categories", async () => {
+    const cells = await page.$$eval("td", (els) =>
+      els.map((e) => e.textContent?.trim() ?? ""),
+    );
+    for (const cat of ["Standard", "Partial", "Exotic"]) {
+      if (!cells.some((c) => c.includes(cat))) throw new Error(`Missing category: ${cat}`);
+    }
+  });
+
+  await assert("has next steps table with 5 rows", async () => {
+    const rows = await page.$$eval("table:last-of-type tbody tr", (els) => els.length);
+    if (rows < 5) throw new Error(`Expected 5+ rows, got ${rows}`);
+  });
+
+  await assertHasForm();
+  await assertHasHeaderAndFooter();
+  await screenshot("sappo-migration-light");
+
   // ─── Legal Pages ──────────────────────────────────────────────
   console.log("\n  [Legal Pages]\n");
 
@@ -320,6 +379,7 @@ async function run() {
     { url: "/company", name: "company" },
     { url: "/career", name: "career" },
     { url: "/webmethods-replacement", name: "webmethods-replacement" },
+    { url: "/sappo-migration", name: "sappo-migration" },
   ]) {
     await goTo(url);
     await screenshot(`${name}-dark`);
