@@ -226,7 +226,7 @@ export default function SappoMigrationPage() {
             Resistance is futile &ndash; SAP PO is coming to an end.
             It&rsquo;s time to act
           </h2>
-          <p className="mt-6 max-w-5xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 max-w-5xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
             Starting with SAP Exchange Infrastructure (SAP XI) way back in
             2002, the middleware solution from SAP has evolved &amp; matured
             through SAP PI (Dual Stack). SAP PO (Dual Usage and Single Stack)
@@ -239,7 +239,7 @@ export default function SappoMigrationPage() {
 
       {/* S2 — Product Release Timeline */}
       <section className="bg-white dark:bg-zinc-900">
-        <div className=" mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
+        <div className=" mx-auto max-w-7xl px-8 py-12 pt-0 lg:px-12 lg:py-16 lg:pt-0">
           <div className="rounded-2xl bg-zinc-100 p-8 shadow-sm dark:bg-zinc-800 lg:p-12">
           <p className="text-center text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             Product Release History: 2002 &ndash; 2030
@@ -393,7 +393,7 @@ export default function SappoMigrationPage() {
       <section>
         {/* White top */}
         <div className="bg-white dark:bg-zinc-950">
-          <div className="mx-auto max-w-7xl px-8 pt-24 pb-12 lg:px-12 lg:pt-32 lg:pb-16">
+          <div className="mx-auto max-w-7xl px-8 pt-24 py-12 lg:px-12 lg:py-16">
             <h2 className="max-w-5xl text-[32px] font-bold leading-[110%] text-zinc-950 dark:text-zinc-50 sm:text-[40px] lg:text-[48px]">
               Coming to an end &ndash; what does this mean exactly?
             </h2>
@@ -481,7 +481,7 @@ export default function SappoMigrationPage() {
 
       {/* S4 — Migration Options Table */}
       <section className="bg-white dark:bg-zinc-900">
-        <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-7xl px-8 py-12 lg:px-12 lg:py-16">
           <h2 className="max-w-5xl text-[32px] font-bold leading-[110%] text-zinc-950 dark:text-zinc-50 sm:text-[40px] lg:text-[48px]">
             What are your migration options?
           </h2>
@@ -775,16 +775,16 @@ export default function SappoMigrationPage() {
             <table className="w-full min-w-[700px] text-left">
               <thead>
                 <tr className="border-b-2 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800">
-                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">
+                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-black dark:border-zinc-700 dark:text-zinc-100">
                     Criteria
                   </th>
-                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">
+                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-black dark:border-zinc-700 dark:text-zinc-100">
                     Consumption Model<br />(BTPEA / CPEA)
                   </th>
-                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">
+                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-black dark:border-zinc-700 dark:text-zinc-100">
                     Consumption Model<br />(Pay-As-You-Go)
                   </th>
-                  <th className="px-4 py-4 text-sm font-bold text-zinc-900 dark:text-zinc-100">
+                  <th className="px-4 py-4 text-sm font-bold text-black dark:text-zinc-100">
                     Subscriber Model<br />(Subscription)
                   </th>
                 </tr>
@@ -795,16 +795,16 @@ export default function SappoMigrationPage() {
                     key={row.criteria}
                     className="border-b border-zinc-200 dark:border-zinc-700"
                   >
-                    <td className="border-r border-zinc-200 px-4 py-4 text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">
+                    <td className="border-r border-zinc-200 px-4 py-4 text-sm font-semibold text-black dark:border-zinc-700 dark:text-zinc-100">
                       {row.criteria}
                     </td>
-                    <td className="border-r border-zinc-200 px-4 py-4 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
+                    <td className="border-r border-zinc-200 px-4 py-4 text-sm text-black dark:border-zinc-700 dark:text-zinc-300">
                       {row.consumption}
                     </td>
-                    <td className="border-r border-zinc-200 px-4 py-4 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
+                    <td className="border-r border-zinc-200 px-4 py-4 text-sm text-black dark:border-zinc-700 dark:text-zinc-300">
                       {row.payAsYouGo}
                     </td>
-                    <td className="px-4 py-4 text-sm text-zinc-600 dark:text-zinc-300">
+                    <td className="px-4 py-4 text-sm text-black dark:text-zinc-300">
                       {row.subscription}
                     </td>
                   </tr>
@@ -835,7 +835,7 @@ export default function SappoMigrationPage() {
 
       {/* S9 — The Migration Approach */}
       <section className="bg-white dark:bg-zinc-950">
-        <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-7xl px-8 py-24 pb-12 lg:px-12 lg:py-32 lg:pb-16">
           <h2 className="max-w-5xl text-[32px] font-bold leading-[110%] text-zinc-950 dark:text-zinc-50 sm:text-[40px] lg:text-[48px]">
             The Migration Approach
           </h2>
