@@ -66,7 +66,7 @@ const timelineEntries = [
     side: "left" as const,
     dot: "sap-po" as const,
     version: "v7.5 SP28",
-    name: "SAP PO 7.31",
+    name: "SAP PO 7.5",
     badges: [{ label: "Single Stack", color: "single" as const }],
     label: "CURRENT",
     labelColor: "bg-[#10B981] text-white",
