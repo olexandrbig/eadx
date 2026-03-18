@@ -238,7 +238,7 @@ export default function SappoMigrationPage() {
       </section>
 
       {/* S2 — Product Release Timeline */}
-      <section className="bg-white dark:bg-zinc-900">
+      <section className="bg-white dark:bg-zinc-950">
         <div className=" mx-auto max-w-7xl px-8 py-12 pt-0 lg:px-12 lg:py-16 lg:pt-0">
           <div className="rounded-2xl bg-zinc-100 p-8 shadow-sm dark:bg-zinc-800 lg:p-12">
           <p className="text-center text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
