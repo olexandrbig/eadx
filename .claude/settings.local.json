@@ -31,7 +31,8 @@
       "Bash(taskkill //F //PID 1235)",
       "Bash(rm -rf .next)",
       "Bash(tr '>' '\\\\n')",
-      "Bash(npm test:*)"
+      "Bash(npm test:*)",
+      "Bash(npm i:*)"
     ]
   }
 }
