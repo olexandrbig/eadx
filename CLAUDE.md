@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` — Production build
 - `npm run start` — Serve production build
 - `npm run lint` — Run ESLint (flat config, ESLint 9+)
+- `npm test` — Run E2E tests (builds, starts server on :3099, runs Puppeteer tests, takes screenshots)
 
 ## Tech Stack
 
@@ -30,7 +31,7 @@ App Router with `src/` directory. All routes under `src/app/`:
 | `/services/[slug]` | Individual service page (SSG via `generateStaticParams`) |
 | `/contact` | Contact page with hero image (`contacts.jpg`) and form |
 | `/company` | Company info (MDX) |
-| `/career` | Career page — hero carousel, benefits grid, culture accordion, contact form |
+| `/career` | Career page — hero vertical marquee, culture accordion with images, benefits grid, highlights marquee, contact form |
 | `/terms` | Terms and Conditions (MDX) |
 | `/imprint` | Imprint / legal info (MDX) |
 | `/privacy` | Privacy Policy (MDX) |
@@ -82,6 +83,19 @@ Split into server and client parts for scroll-aware behavior:
 - `contact-form.tsx` — client component: first name, last name, company, email, phone, message, privacy checkbox, submit button
 - `contact-section.tsx` — centered layout with heading, subtitle, decorative logo watermark, form
 - Form submits to `/api/contact` route handler which creates a lead in Zoho CRM (`src/lib/zoho.ts`)
+
+### Career Page
+
+1. **Hero section** — full viewport, 2-column vertical marquee of team event photos (from `public/career/highlights/`), scrolling in opposite directions via `hero-vertical-marquee.tsx`
+2. **"Our culture"** — accordion (`career-culture-accordion.tsx`) with 7 items + eyebrow; each item has an associated image that crossfades on the left when expanded. Culture images in `public/career/culture/`
+3. **"We Have a Lot to Offer"** — 3-column grid of 11 benefit cards with SVG icons from `public/career/icons/`
+4. **"Our Team Events Highlights"** — horizontal auto-scrolling marquee (`highlights-marquee.tsx`) using all 45 photos from `public/career/highlights/`, randomized with seeded shuffle
+5. **Contact section** — CTA heading + contact form
+
+Key components:
+- `hero-vertical-marquee.tsx` — client component, two columns scrolling vertically in opposite directions via `requestAnimationFrame`
+- `career-culture-accordion.tsx` — client component, renders both the image (crossfade) and accordion list as siblings via fragment
+- `highlights-marquee.tsx` — client component, continuous horizontal scroll at 1px/frame
 
 ### Legal Pages
 
@@ -143,6 +157,14 @@ All links across the site use the same hover pattern:
 ## Security
 
 Headers configured in `next.config.ts`: CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy. `X-Powered-By` disabled.
+
+## Testing
+
+- **E2E tests**: `tests/e2e.test.ts` — Puppeteer-based, runs via `npx tsx`
+- Builds the project, starts Next.js on port 3099, then tests all pages
+- Tests: page loads, headings, forms, navigation, hero elements, accordion items, marquee images, partner logos, dark mode screenshots, transparent header, 404 handling
+- Screenshots saved to `tests/screenshots/` (light + dark mode for every page)
+- No test framework — custom `assert()` runner with pass/fail counting
 
 ## Conventions
 

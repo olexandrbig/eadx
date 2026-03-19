@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/contact-form";
 import { CareerCultureAccordion } from "@/components/career-culture-accordion";
+import { HighlightsMarquee } from "@/components/highlights-marquee";
+import { HeroVerticalMarquee } from "@/components/hero-vertical-marquee";
 
 export const metadata: Metadata = {
   title: "Career",
@@ -14,36 +16,43 @@ const cultureItems = [
     title: "Strategic Alignment & Reflection Meetings",
     content:
       "Several times a year, we come together to reflect on our projects, review architectural decisions, and align on company direction. We openly discuss what worked, what didn't, and how we raise the bar - together.",
+    image: "/career/culture/strategic-alignment-reflection-meetings.jpg",
   },
   {
     title: "Knowledge Sharing & Technical Deep Dives",
     content:
       "We make time for practical exchange across teams so expertise is documented, challenged, and shared instead of staying isolated.",
+    image: "/career/culture/knowledge-sharing-technical-deep-dives.jpg",
   },
   {
     title: "Certification & Structured Growth",
     content:
       "We support long-term development through certification paths, learning plans, and clear conversations about how your scope evolves.",
+    image: "/career/culture/certification-structured-growth.jpg",
   },
   {
     title: "Team Buildings & Shared Experiences",
     content:
       "Shared time outside delivery matters. We invest in experiences that strengthen trust and make collaboration easier when the work gets hard.",
+    image: "/career/culture/team-building-shared-experiences.jpg",
   },
   {
     title: "Networking & Industry Engagement",
     content:
       "We stay connected to the broader market through partner interactions, community participation, and regular exposure to new ideas.",
+    image: "/career/culture/networking-industry-engagement.jpg",
   },
   {
     title: "Ownership & Trust",
     content:
       "Responsibility is expected and supported. People are trusted to take initiative, communicate clearly, and follow through.",
+    image: "/career/culture/ownership-and-trust.jpg",
   },
   {
     title: "Be a Leader",
     content:
       "Leadership at EADX is not tied to hierarchy alone. We value people who guide others through expertise, reliability, and example.",
+    image: "/career/culture/be-a-leader.jpg",
   },
 ];
 
@@ -116,52 +125,60 @@ const offerings = [
   },
 ];
 
-const events = [
-  { src: "/career/event-city-view.png", alt: "City view from team event", width: 512, height: 760 },
-  { src: "/career/event-team-lunch.png", alt: "Team lunch", width: 760, height: 760 },
-  { src: "/career/event-golf-view.png", alt: "Landscape at team event", width: 760, height: 760 },
-  { src: "/career/event-hike.png", alt: "Team hiking event", width: 760, height: 760 },
-  { src: "/career/event-barbecue.png", alt: "Barbecue at team event", width: 512, height: 760 },
-];
+// Seeded shuffle for stable randomization across renders
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+  const shuffled = [...arr];
+  let s = seed;
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    s = (s * 16807 + 0) % 2147483647;
+    const j = s % (i + 1);
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+const allHighlights = Array.from({ length: 45 }, (_, i) => ({
+  src: `/career/highlights/team-event-${String(i + 1).padStart(2, "0")}.jpg`,
+  alt: `EADX team event highlight ${i + 1}`,
+}));
+
+const highlights = seededShuffle(allHighlights, 42);
+
+function pinAt<T extends { src: string }>(arr: T[], src: string, index: number): T[] {
+  const result = arr.filter((item) => item.src !== src);
+  const item = arr.find((item) => item.src === src);
+  if (item) result.splice(index, 0, item);
+  return result;
+}
+
+
+let heroLeftBase = highlights.filter((_, i) => i % 2 === 0);
+let heroRightBase = highlights.filter((_, i) => i % 2 === 1);
+
+// Ensure team-event-45 is in the right group — if it's in left, swap it with team-event-07
+const img45 = "/career/highlights/team-event-45.jpg";
+const img07 = "/career/highlights/team-event-07.jpg";
+if (heroLeftBase.some((img) => img.src === img45)) {
+  const item45 = heroLeftBase.find((img) => img.src === img45)!;
+  const item07 = heroRightBase.find((img) => img.src === img07)!;
+  heroLeftBase = heroLeftBase.map((img) => (img.src === img45 ? item07 : img));
+  heroRightBase = heroRightBase.map((img) => (img.src === img07 ? item45 : img));
+}
+
+// Pin team-event-43 as 2nd in left (index 1)
+const heroLeft = pinAt(heroLeftBase, "/career/highlights/team-event-43.jpg", 1);
+// Put team-event-45 where team-event-07 was (the visible 2nd position on right)
+const heroRight = heroRightBase;
 
 export default function CareerPage() {
   return (
     <main className="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
       <section className="relative overflow-hidden bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 lg:h-screen lg:max-h-[960px] lg:min-h-[680px]">
-        {/* Desktop hero image grid — absolutely positioned, fixed width */}
+        {/* Desktop hero — 2 columns scrolling vertically in opposite directions */}
         <div className="pointer-events-none absolute right-0 top-20 bottom-0 z-0 hidden w-[560px] xl:block 2xl:right-12">
-          {/* Top fade — starts at navbar bottom */}
           <div className="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-white via-white/70 to-transparent dark:from-zinc-950 dark:via-zinc-950/70" />
-          {/* Bottom fade */}
           <div className="absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-white via-white/70 to-transparent dark:from-zinc-950 dark:via-zinc-950/70" />
-
-          {/* 2-column brick layout with step offset — fills section height */}
-          <div className="flex h-full gap-3 pr-4">
-            {/* Left column — flex ratios: forest 330, team-greece 820, plane 394 */}
-            <div className="flex w-1/2 flex-col gap-3">
-              <div className="min-h-0 overflow-hidden rounded-[18px]" style={{ flex: '330 1 0%' }}>
-                <Image src="/career/hero-forest.png" alt="Forest during team outing" width={616} height={330} className="h-full w-full object-cover" />
-              </div>
-              <div className="min-h-0 overflow-hidden rounded-[18px]" style={{ flex: '820 1 0%' }}>
-                <Image src="/career/hero-team-greece.png" alt="EADX team in Greece" width={616} height={820} className="h-full w-full object-cover" priority />
-              </div>
-              <div className="min-h-0 overflow-hidden rounded-[18px]" style={{ flex: '394 1 0%' }}>
-                <Image src="/career/hero-plane.png" alt="Traveling for team events" width={616} height={394} className="h-full w-full object-cover" />
-              </div>
-            </div>
-            {/* Right column — offset down for brick effect, flex ratios: dinner 552, office-selfie 820, trees 172 */}
-            <div className="flex w-1/2 flex-col gap-3">
-              <div className="min-h-0 overflow-hidden rounded-[18px]" style={{ flex: '552 1 0%' }}>
-                <Image src="/career/hero-dinner.png" alt="EADX team dinner" width={616} height={552} className="h-full w-full object-cover" />
-              </div>
-              <div className="min-h-0 overflow-hidden rounded-[18px]" style={{ flex: '820 1 0%' }}>
-                <Image src="/career/hero-office-selfie.png" alt="Office collaboration at EADX" width={616} height={820} className="h-full w-full object-cover" priority />
-              </div>
-              <div className="min-h-0 overflow-hidden rounded-[18px]" style={{ flex: '172 1 0%' }}>
-                <Image src="/career/hero-trees.png" alt="Trees during team outing" width={616} height={172} className="h-full w-full object-cover" />
-              </div>
-            </div>
-          </div>
+          <HeroVerticalMarquee leftImages={heroLeft} rightImages={heroRight} />
         </div>
 
         <div className="relative z-10 mx-auto max-w-[1728px] px-6 pb-10 pt-24 lg:px-0">
@@ -213,17 +230,10 @@ export default function CareerPage() {
             Our culture
           </h2>
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-12">
-            <Image
-              src="/career/culture-workshop.png"
-              alt="Workshop session at EADX"
-              width={760}
-              height={760}
-              className="h-auto w-full rounded-2xl object-cover"
-              priority
-            />
             <CareerCultureAccordion
               eyebrow="High Standards. Strong Bonds. Shared Ambition."
               eyebrowContent="Our culture is built around accountability, mutual respect, and a strong sense of shared direction. We invest in an environment where people can challenge ideas openly, support each other consistently, and grow while contributing to meaningful work."
+              eyebrowImage="/career/culture/high-standards-shared-ambition.jpg"
               items={cultureItems}
             />
           </div>
@@ -255,33 +265,12 @@ export default function CareerPage() {
       </section>
 
       <section className="bg-zinc-100 py-20 dark:bg-zinc-900 lg:py-24">
-        <div className="mx-auto max-w-[1728px] overflow-hidden">
+        <div className="mx-auto overflow-hidden">
           <h2 className="px-6 text-center text-4xl font-bold leading-none tracking-[-0.03em] text-zinc-900 dark:text-zinc-50 sm:text-5xl lg:text-[64px]">
             Our Team Events Highlights
           </h2>
-          <div className="mt-12 flex gap-4 overflow-x-auto px-6 pb-2 lg:hidden">
-            {events.map((event) => (
-              <Image
-                key={event.src}
-                src={event.src}
-                alt={event.alt}
-                width={event.width}
-                height={event.height}
-                className="h-[300px] w-[220px] shrink-0 rounded-2xl object-cover sm:h-[380px] sm:w-[280px]"
-              />
-            ))}
-          </div>
-          <div className="mt-12 hidden grid-cols-[0.67fr_1fr_1fr_1fr_0.67fr] gap-4 lg:grid xl:px-0">
-            {events.map((event) => (
-              <Image
-                key={event.src}
-                src={event.src}
-                alt={event.alt}
-                width={event.width}
-                height={event.height}
-                className="h-[480px] w-full rounded-2xl object-cover"
-              />
-            ))}
+          <div className="mt-12">
+            <HighlightsMarquee images={highlights} />
           </div>
         </div>
       </section>

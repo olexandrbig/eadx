@@ -431,23 +431,23 @@ export default function EnterpriseIntegrationPage() {
           </h2>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { src: "/partners/image 1.png", alt: "Snowflake", className: "h-16" },
-              { src: "/partners/image 2.png", alt: "WSO2", className: "h-16" },
-              { src: "/partners/image 7.png", alt: "IBM webMethods", className: "h-32" },
-              { src: "/partners/image 3.png", alt: "Apache Camel", className: "h-16" },
-              { src: "/partners/image 4.png", alt: "SAP", className: "h-16" },
-              { src: "/partners/image 6.png", alt: "Kong", className: "h-16" },
+              { src: "/partners/image 1.png", alt: "Snowflake", height: "h-16" },
+              { src: "/partners/image 2.png", alt: "WSO2", height: "h-16" },
+              { src: "/partners/image 7.png", alt: "IBM webMethods", height: "h-28" },
+              { src: "/partners/image 3.png", alt: "Apache Camel", height: "h-16" },
+              { src: "/partners/image 4.png", alt: "SAP", height: "h-16" },
+              { src: "/partners/image 6.png", alt: "Kong", height: "h-16" },
             ].map((partner) => (
               <div
                 key={partner.alt}
-                className="flex items-center justify-center rounded-xl bg-zinc-100 px-8 py-10"
+                className="flex h-32 items-center justify-center rounded-xl bg-zinc-100 px-8 dark:bg-zinc-300"
               >
                 <Image
                   src={partner.src}
                   alt={partner.alt}
                   width={200}
                   height={80}
-                  className={`${partner.className} w-auto object-contain`}
+                  className={`${partner.height} w-auto object-contain`}
                 />
               </div>
             ))}

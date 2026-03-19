@@ -159,6 +159,13 @@ async function run() {
     const rows = await page.$$eval("table tbody tr", (trs) => trs.length);
     if (rows < 5) throw new Error(`Found ${rows} rows`);
   });
+  await assert("has 6 partner logos", async () => {
+    const imgs = await page.$$eval("img", (els) =>
+      els.filter((e) => (e.getAttribute("src") ?? "").includes("partners") ||
+                        (e.getAttribute("srcset") ?? "").includes("partners")).length,
+    );
+    if (imgs !== 6) throw new Error(`Expected 6 partner logos, got ${imgs}`);
+  });
   await assertHasForm();
   await assertHasHeaderAndFooter();
   await screenshot("enterprise-integration-light");
@@ -251,7 +258,43 @@ async function run() {
 
   await page.goto("about:blank");
   await assertPageLoads("/career", "Career");
-  await assertHasElement("has page content", "main, section");
+  await assertHasHeading("Be Part of");
+  await assertHasHeading("Our culture");
+  await assertHasHeading("We Have a Lot to Offer");
+  await assertHasHeading("Our Team Events Highlights");
+  await assert("has hero vertical marquee (highlight images)", async () => {
+    const count = await page.$$eval(
+      "section:first-of-type img[src*='team-event']",
+      (els) => els.length,
+    );
+    if (count < 4) throw new Error(`Expected 4+ hero images, got ${count}`);
+  });
+  await assert("has culture accordion with 7+ items", async () => {
+    const buttons = await page.$$eval(
+      "button",
+      (els) => els.filter((e) => e.textContent?.includes("+") || e.textContent?.includes("\u2212")).length,
+    );
+    if (buttons < 7) throw new Error(`Expected 7+ accordion items, got ${buttons}`);
+  });
+  await assert("has culture images for accordion", async () => {
+    const imgs = await page.$$eval("img", (els) =>
+      els.filter((e) => (e.getAttribute("src") ?? "").includes("culture") ||
+                        (e.getAttribute("srcset") ?? "").includes("culture")).length,
+    );
+    if (imgs < 1) throw new Error(`Expected culture images, got ${imgs}`);
+  });
+  await assert("has benefits grid with 11 items", async () => {
+    const icons = await page.$$eval("img[src*='/career/icons/']", (els) => els.length);
+    if (icons < 11) throw new Error(`Expected 11 benefit icons, got ${icons}`);
+  });
+  await assert("has highlights marquee with images", async () => {
+    const imgs = await page.$$eval("img", (els) =>
+      els.filter((e) => (e.getAttribute("src") ?? "").includes("highlights") ||
+                        (e.getAttribute("srcset") ?? "").includes("highlights")).length,
+    );
+    if (imgs < 10) throw new Error(`Expected 10+ highlight images, got ${imgs}`);
+  });
+  await assertHasForm();
   await assertHasHeaderAndFooter();
   await screenshot("career-light");
 
