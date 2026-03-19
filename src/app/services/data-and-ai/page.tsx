@@ -434,9 +434,9 @@ export default function DataAndAiPage() {
                           key={item.title}
                           className="min-w-[180px] flex-1 rounded-xl border-[2px] border-[#008000] bg-white p-5 dark:bg-zinc-800"
                         >
-                          <h4 className="text-center text-base font-bold text-zinc-950 dark:text-zinc-50">
+                          <h3 className="text-center text-base font-bold text-zinc-950 dark:text-zinc-50">
                             {item.title}
-                          </h4>
+                          </h3>
                           <div className="mt-3 flex flex-wrap justify-center gap-[10px]">
                             {item.subs.map((sub) => (
                               <span
@@ -473,9 +473,9 @@ export default function DataAndAiPage() {
                         key={item.title}
                         className="min-w-[180px] flex-1 rounded-xl border-[2px] border-[#008000] bg-white p-5 dark:bg-zinc-800"
                       >
-                        <h4 className="text-center text-base font-bold text-zinc-950 dark:text-zinc-50">
+                        <h3 className="text-center text-base font-bold text-zinc-950 dark:text-zinc-50">
                           {item.title}
-                        </h4>
+                        </h3>
                         <div className="mt-3 flex flex-wrap justify-center gap-[10px]">
                           {item.subs.map((sub) => (
                             <span

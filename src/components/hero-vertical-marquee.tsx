@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 interface HeroVerticalMarqueeProps {
   leftImages: { src: string; alt: string }[];
@@ -21,42 +20,72 @@ function VerticalColumn({
   initialOffset: number;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef<{
+    position: number;
+    animationId: number;
+    isVisible: boolean;
+  }>({ position: initialOffset, animationId: 0, isVisible: false });
 
   const repeated = [...images, ...images];
 
-  useEffect(() => {
+  const startAnimation = useCallback(() => {
     const track = trackRef.current;
-    if (!track) return;
+    const state = stateRef.current;
+    if (!track || !state.isVisible) return;
 
-    let animationId: number;
-    let position = initialOffset;
     const speed = 0.5;
     const halfHeight = track.scrollHeight / 2;
 
     // Normalize position into valid range
     if (direction === "down") {
-      while (position < -halfHeight) position += halfHeight;
-      while (position >= 0) position -= halfHeight;
+      while (state.position < -halfHeight) state.position += halfHeight;
+      while (state.position >= 0) state.position -= halfHeight;
     }
 
     function animate() {
       if (direction === "up") {
-        position -= speed;
-        if (position <= -halfHeight) position += halfHeight;
+        state.position -= speed;
+        if (state.position <= -halfHeight) state.position += halfHeight;
       } else {
-        position += speed;
-        if (position >= 0) position -= halfHeight;
+        state.position += speed;
+        if (state.position >= 0) state.position -= halfHeight;
       }
-      track!.style.transform = `translate3d(0, ${position}px, 0)`;
-      animationId = requestAnimationFrame(animate);
+      track!.style.transform = `translate3d(0, ${state.position}px, 0)`;
+      state.animationId = requestAnimationFrame(animate);
     }
 
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [direction, initialOffset]);
+    state.animationId = requestAnimationFrame(animate);
+  }, [direction]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const state = stateRef.current;
+        if (entry.isIntersecting) {
+          state.isVisible = true;
+          startAnimation();
+        } else {
+          state.isVisible = false;
+          cancelAnimationFrame(state.animationId);
+        }
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(stateRef.current.animationId);
+    };
+  }, [startAnimation]);
 
   return (
-    <div className="w-1/2 overflow-hidden">
+    <div ref={containerRef} className="w-1/2 overflow-hidden">
       <div
         ref={trackRef}
         className="flex flex-col gap-3"
@@ -67,13 +96,13 @@ function VerticalColumn({
             key={`${img.src}-${i}`}
             className="shrink-0 overflow-hidden rounded-[18px]"
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={img.src}
               alt={img.alt}
-              width={280}
-              height={380}
+              loading="lazy"
+              decoding="async"
               className="h-[340px] w-full object-cover"
-              priority={i < 3}
             />
           </div>
         ))}

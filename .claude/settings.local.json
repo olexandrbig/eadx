@@ -25,7 +25,13 @@
       "Bash(for f:*)",
       "Bash(do ffmpeg:*)",
       "Bash(done)",
-      "WebFetch(domain:dia.cx)"
+      "WebFetch(domain:dia.cx)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3099/career)",
+      "Bash(curl -s http://localhost:3099/career)",
+      "Bash(taskkill //F //PID 1235)",
+      "Bash(rm -rf .next)",
+      "Bash(tr '>' '\\\\n')",
+      "Bash(npm test:*)"
     ]
   }
 }

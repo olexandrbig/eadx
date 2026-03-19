@@ -54,8 +54,8 @@ const timelineEntries = [
     name: "SAP PI 7.4",
     badges: [{ label: "Dual Stack", color: "dual" as const }],
     label: "EOL 2020",
-    labelColor: "bg-[#EF4444] text-white",
-    accent: "#EF4444",
+    labelColor: "bg-[#DC2626] text-white",
+    accent: "#DC2626",
     subtitle: "End of Life — Dec 31, 2020",
     tags: ["Last Dual Stack", "EOL Dec 2020"],
     description:
@@ -69,8 +69,8 @@ const timelineEntries = [
     name: "SAP PO 7.5",
     badges: [{ label: "Single Stack", color: "single" as const }],
     label: "CURRENT",
-    labelColor: "bg-[#10B981] text-white",
-    accent: "#10B981",
+    labelColor: "bg-[#059669] text-white",
+    accent: "#059669",
     subtitle: "Current Release — 2025",
     tags: ["Current", "Supported until 2030"],
     description:
@@ -84,8 +84,8 @@ const timelineEntries = [
     name: "SAP PO 7.5",
     badges: [{ label: "Single Stack", color: "single" as const }],
     label: "MAINSTREAM EOL",
-    labelColor: "bg-[#F97316] text-white",
-    accent: "#F97316",
+    labelColor: "bg-[#EA580C] text-white",
+    accent: "#EA580C",
     subtitle: "Mainstream Ends — Dec 31, 2027",
     tags: ["Mainstream EOL"],
     description:
@@ -99,8 +99,8 @@ const timelineEntries = [
     name: "SAP PO 7.5",
     badges: [{ label: "Single Stack", color: "single" as const }],
     label: "FINAL EOL",
-    labelColor: "bg-[#EF4444] text-white",
-    accent: "#EF4444",
+    labelColor: "bg-[#DC2626] text-white",
+    accent: "#DC2626",
     subtitle: "All Support Ends — Dec 31, 2030",
     tags: ["Final EOL", "Migration Required"],
     description:
@@ -109,14 +109,14 @@ const timelineEntries = [
 ];
 
 const legendItems = [
-  { color: "bg-[#6366F1]", label: "SAP XI" },
-  { color: "bg-[#0EA5E9]", label: "SAP PI" },
-  { color: "bg-[#F59E0B]", label: "SAP PO" },
+  { color: "bg-[#4338CA]", label: "SAP XI" },
+  { color: "bg-[#0369A1]", label: "SAP PI" },
+  { color: "bg-[#B45309]", label: "SAP PO" },
   { color: "bg-[#D97706]", label: "Dual Stack" },
   { color: "bg-[#059669]", label: "Single Stack" },
-  { color: "bg-[#10B981]", label: "Current" },
-  { color: "bg-[#F97316]", label: "Mainstream EOL" },
-  { color: "bg-[#EF4444]", label: "Final EOL" },
+  { color: "bg-[#059669]", label: "Current" },
+  { color: "bg-[#EA580C]", label: "Mainstream EOL" },
+  { color: "bg-[#DC2626]", label: "Final EOL" },
 ];
 
 
@@ -182,10 +182,28 @@ const migrationToolRows = [
 
 function dotHex(type: string) {
   switch (type) {
-    case "sap-xi": return "#6366F1";
-    case "sap-pi": return "#0EA5E9";
-    case "sap-po": return "#F59E0B";
+    case "sap-xi": return "#4338CA";
+    case "sap-pi": return "#0369A1";
+    case "sap-po": return "#B45309";
     default: return "#a1a1aa";
+  }
+}
+
+function dotTextClass(type: string) {
+  switch (type) {
+    case "sap-xi": return "text-[#4338CA] dark:text-[#818CF8]";
+    case "sap-pi": return "text-[#0369A1] dark:text-[#38BDF8]";
+    case "sap-po": return "text-[#B45309] dark:text-[#FBBF24]";
+    default: return "text-zinc-400";
+  }
+}
+
+function accentTextClass(accent: string | undefined) {
+  switch (accent) {
+    case "#DC2626": return "text-[#DC2626] dark:text-[#FCA5A5]";
+    case "#059669": return "text-[#059669] dark:text-[#6EE7B7]";
+    case "#EA580C": return "text-[#EA580C] dark:text-[#FDBA74]";
+    default: return "";
   }
 }
 
@@ -200,11 +218,11 @@ function dotLabel(type: string) {
 function badgeColor(color: string) {
   switch (color) {
     case "dual":
-      return "text-[#D97706] bg-[#FEF3C7] border border-[#D97706]";
+      return "text-[#92400E] bg-[#FEF3C7] border border-[#D97706] dark:text-[#FBBF24] dark:bg-[#78350F] dark:border-[#B45309]";
     case "single":
-      return "text-[#059669] bg-[#D1FAE5] border border-[#059669]";
+      return "text-[#065F46] bg-[#D1FAE5] border border-[#059669] dark:text-[#6EE7B7] dark:bg-[#064E3B] dark:border-[#059669]";
     default:
-      return "text-zinc-600 bg-zinc-100 border border-zinc-300";
+      return "text-zinc-600 bg-zinc-100 border border-zinc-300 dark:text-zinc-400 dark:bg-zinc-700 dark:border-zinc-600";
   }
 }
 
@@ -278,14 +296,14 @@ export default function SappoMigrationPage() {
                     <div className="mb-3"><span className={`inline-block rounded-full px-3 py-1 text-sm font-bold text-white`} style={{ backgroundColor: color }}>{entry.year}</span></div>
                     <div className="flex items-center gap-2">
                       <span className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
-                      <span className="text-xs font-semibold" style={{ color }}>{dotLabel(entry.dot)}</span>
+                      <span className={`text-xs font-semibold ${dotTextClass(entry.dot)}`}>{dotLabel(entry.dot)}</span>
                       <span className="ml-auto text-xs font-medium text-zinc-700 dark:text-zinc-300">{entry.version}</span>
                     </div>
                     <div className="mt-2 flex items-center justify-between">
                       <h3 className="text-lg font-bold text-zinc-950 dark:text-zinc-50">{entry.name}</h3>
                       <div className="flex gap-2">{entry.badges.map((b) => <span key={b.label} className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badgeColor(b.color)}`}>{b.label}</span>)}</div>
                     </div>
-                    <p className="mt-1 text-xs italic" style={{ color }}>{entry.subtitle}</p>
+                    <p className={`mt-1 text-xs italic ${accentTextClass(entry.accent) || dotTextClass(entry.dot)}`}>{entry.subtitle}</p>
                     {entry.tags.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">{entry.tags.map((t) => <span key={t} className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500 dark:border-zinc-600 dark:text-zinc-400">{t}</span>)}</div>}
                     <p className="mt-3 whitespace-pre-line text-sm italic leading-relaxed text-zinc-800 dark:text-zinc-300">{entry.description}</p>
                   </div>
@@ -309,14 +327,14 @@ export default function SappoMigrationPage() {
                         {entry.label && <span className={`absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-0.5 text-xs font-bold uppercase tracking-wider ${entry.labelColor}`}>{entry.label}</span>}
                         <div className="flex items-center gap-2">
                           <span className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
-                          <span className="text-xs font-semibold" style={{ color }}>{dotLabel(entry.dot)}</span>
+                          <span className={`text-xs font-semibold ${dotTextClass(entry.dot)}`}>{dotLabel(entry.dot)}</span>
                           <span className="ml-auto text-xs font-medium text-zinc-700 dark:text-zinc-300">{entry.version}</span>
                         </div>
                         <div className="mt-2 flex items-center justify-between">
                           <h3 className="text-lg font-bold text-zinc-950 dark:text-zinc-50">{entry.name}</h3>
                           <div className="flex gap-2">{entry.badges.map((b) => <span key={b.label} className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badgeColor(b.color)}`}>{b.label}</span>)}</div>
                         </div>
-                        <p className="mt-1 text-xs italic" style={{ color }}>{entry.subtitle}</p>
+                        <p className={`mt-1 text-xs italic ${accentTextClass(entry.accent) || dotTextClass(entry.dot)}`}>{entry.subtitle}</p>
                         {entry.tags.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">{entry.tags.map((t) => <span key={t} className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500 dark:border-zinc-600 dark:text-zinc-400">{t}</span>)}</div>}
                         <p className="mt-3 whitespace-pre-line text-sm italic leading-relaxed text-zinc-800 dark:text-zinc-300">{entry.description}</p>
                       </div>
@@ -336,14 +354,14 @@ export default function SappoMigrationPage() {
                       `${dotHex("sap-pi")} 14%`,
                       `${dotHex("sap-po")} 14%`,
                       `${dotHex("sap-po")} 33%`,
-                      `#EF4444 33%`,
-                      `#EF4444 43%`,
-                      `#10B981 43%`,
-                      `#10B981 63%`,
-                      `#F97316 63%`,
-                      `#F97316 75%`,
-                      `#EF4444 75%`,
-                      `#EF4444 100%`,
+                      `#DC2626 33%`,
+                      `#DC2626 43%`,
+                      `#059669 43%`,
+                      `#059669 63%`,
+                      `#EA580C 63%`,
+                      `#EA580C 75%`,
+                      `#DC2626 75%`,
+                      `#DC2626 100%`,
                     ].join(", ")})`,
                   }}
                 />
@@ -363,14 +381,14 @@ export default function SappoMigrationPage() {
                         {entry.label && <span className={`absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-0.5 text-xs font-bold uppercase tracking-wider ${entry.labelColor}`}>{entry.label}</span>}
                         <div className="flex items-center gap-2">
                           <span className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
-                          <span className="text-xs font-semibold" style={{ color }}>{dotLabel(entry.dot)}</span>
+                          <span className={`text-xs font-semibold ${dotTextClass(entry.dot)}`}>{dotLabel(entry.dot)}</span>
                           <span className="ml-auto text-xs font-medium text-zinc-700 dark:text-zinc-300">{entry.version}</span>
                         </div>
                         <div className="mt-2 flex items-center justify-between">
                           <h3 className="text-lg font-bold text-zinc-950 dark:text-zinc-50">{entry.name}</h3>
                           <div className="flex gap-2">{entry.badges.map((b) => <span key={b.label} className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badgeColor(b.color)}`}>{b.label}</span>)}</div>
                         </div>
-                        <p className="mt-1 text-xs italic" style={{ color }}>{entry.subtitle}</p>
+                        <p className={`mt-1 text-xs italic ${accentTextClass(entry.accent) || dotTextClass(entry.dot)}`}>{entry.subtitle}</p>
                         {entry.tags.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">{entry.tags.map((t) => <span key={t} className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500 dark:border-zinc-600 dark:text-zinc-400">{t}</span>)}</div>}
                         <p className="mt-3 whitespace-pre-line text-sm italic leading-relaxed text-zinc-800 dark:text-zinc-300">{entry.description}</p>
                       </div>
@@ -428,29 +446,29 @@ export default function SappoMigrationPage() {
             <div className="space-y-4">
               {/* Bug Fixes */}
               <div className="relative h-12">
-                <div className="absolute inset-0 flex rounded-full border border-[#4EA72E] bg-white dark:bg-zinc-800">
+                <div className="absolute inset-0 flex rounded-full border border-[#15803D] bg-white dark:bg-zinc-800">
                   <div className="w-1/2" />
-                  <div className="flex flex-1 items-center justify-center text-sm font-semibold text-[#4EA72E]">Bug Fixes</div>
+                  <div className="flex flex-1 items-center justify-center text-sm font-semibold text-[#15803D] dark:text-[#4ADE80]">Bug Fixes</div>
                 </div>
-                <div className="absolute inset-y-0 left-0 flex w-1/2 items-center justify-center rounded-full bg-[#4EA72E] text-sm font-semibold text-white">
+                <div className="absolute inset-y-0 left-0 flex w-1/2 items-center justify-center rounded-full bg-[#15803D] text-sm font-semibold text-white">
                   Bug Fixes
                 </div>
               </div>
 
               {/* Security Patches */}
               <div className="relative h-12">
-                <div className="absolute inset-0 flex rounded-full border border-[#4EA72E] bg-white dark:bg-zinc-800">
+                <div className="absolute inset-0 flex rounded-full border border-[#15803D] bg-white dark:bg-zinc-800">
                   <div className="w-1/2" />
-                  <div className="flex flex-1 items-center justify-center text-sm font-semibold text-[#4EA72E]">Security Patches</div>
+                  <div className="flex flex-1 items-center justify-center text-sm font-semibold text-[#15803D] dark:text-[#4ADE80]">Security Patches</div>
                 </div>
-                <div className="absolute inset-y-0 left-0 flex w-1/2 items-center justify-center rounded-full bg-[#4EA72E] text-sm font-semibold text-white">
+                <div className="absolute inset-y-0 left-0 flex w-1/2 items-center justify-center rounded-full bg-[#15803D] text-sm font-semibold text-white">
                   Security Patches
                 </div>
               </div>
 
               {/* Features */}
               <div className="flex items-center gap-0">
-                <div className="flex h-12 w-1/2 items-center justify-center rounded-full bg-[#4EA72E] text-sm font-semibold text-white">
+                <div className="flex h-12 w-1/2 items-center justify-center rounded-full bg-[#15803D] text-sm font-semibold text-white">
                   Features
                 </div>
               </div>
@@ -495,7 +513,7 @@ export default function SappoMigrationPage() {
             <table className="w-full min-w-[700px] text-left">
               <thead>
                 <tr className="border-b border-zinc-200 bg-[#F0FAFD] dark:border-zinc-600 dark:bg-zinc-700">
-                  <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-zinc-900 dark:border-zinc-600 dark:text-zinc-100">
+                  <th className="whitespace-nowrap border-r border-zinc-200 px-4 py-4 text-sm font-bold text-zinc-900 dark:border-zinc-600 dark:text-zinc-100">
                     Options
                   </th>
                   <th className="border-r border-zinc-200 px-4 py-4 text-sm font-bold text-zinc-900 dark:border-zinc-600 dark:text-zinc-100">
@@ -511,7 +529,7 @@ export default function SappoMigrationPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-zinc-200 dark:border-zinc-700">
-                  <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">Option 1</td>
+                  <td className="whitespace-nowrap border-r border-zinc-200 px-4 py-5 align-top text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">Option 1</td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">Finish migration to SAP Integration Suite <strong>by December 2027</strong></td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
                     <ul className="list-disc space-y-1 pl-4">
@@ -528,7 +546,7 @@ export default function SappoMigrationPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-zinc-200 dark:border-zinc-700">
-                  <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">Option 2</td>
+                  <td className="whitespace-nowrap border-r border-zinc-200 px-4 py-5 align-top text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">Option 2</td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">Finish migration to SAP Integration Suite <strong>by December 2030</strong></td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
                     <ul className="list-disc space-y-1 pl-4">
@@ -542,7 +560,7 @@ export default function SappoMigrationPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-zinc-200 dark:border-zinc-700">
-                  <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">Option 3</td>
+                  <td className="whitespace-nowrap border-r border-zinc-200 px-4 py-5 align-top text-sm font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">Option 3</td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">Finish migration to 3rd party integration middleware</td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
                     <ul className="list-disc space-y-1 pl-4">
@@ -703,12 +721,12 @@ export default function SappoMigrationPage() {
               </svg>
 
               {/* Consumption Based */}
-              <div className="absolute top-[37px] left-[240px] rounded-xl bg-sky-500 px-6 py-3 text-center text-sm font-bold text-white" style={{ width: 155 }}>
+              <div className="absolute top-[37px] left-[240px] rounded-xl bg-sky-700 px-6 py-3 text-center text-sm font-bold text-white" style={{ width: 155 }}>
                 Consumption<br />Based
               </div>
 
               {/* Subscription Based */}
-              <div className="absolute top-[167px] left-[240px] rounded-xl bg-amber-500 px-6 py-3 text-center text-sm font-bold text-white" style={{ width: 155 }}>
+              <div className="absolute top-[167px] left-[240px] rounded-xl bg-amber-700 px-6 py-3 text-center text-sm font-bold text-white" style={{ width: 155 }}>
                 Subscription<br />Based
               </div>
 
@@ -734,7 +752,7 @@ export default function SappoMigrationPage() {
                 License Model
               </div>
               <div className="ml-8 flex flex-col gap-4">
-                <div className="rounded-xl bg-sky-500 px-5 py-3 text-center text-sm font-bold text-white">
+                <div className="rounded-xl bg-sky-700 px-5 py-3 text-center text-sm font-bold text-white">
                   Consumption Based
                 </div>
                 <div className="ml-8 flex flex-col gap-2">
@@ -748,7 +766,7 @@ export default function SappoMigrationPage() {
                     PAY &ndash; AS &ndash; YOU &ndash; GO
                   </div>
                 </div>
-                <div className="rounded-xl bg-amber-500 px-5 py-3 text-center text-sm font-bold text-white">
+                <div className="rounded-xl bg-amber-700 px-5 py-3 text-center text-sm font-bold text-white">
                   Subscription Based
                 </div>
               </div>
@@ -1021,7 +1039,7 @@ export default function SappoMigrationPage() {
                 <tr className="border-b border-zinc-200 dark:border-zinc-700">
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">2</td>
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">Ensure your <strong>project timelines are realistic</strong> and your assets and resources are aligned</td>
-                  <td rowSpan={2} className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">No initial commitment</td>
+                  <td rowSpan={2} className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300"></td>
                 </tr>
                 <tr className="border-b border-zinc-200 dark:border-zinc-700">
                   <td className="border-r border-zinc-200 px-4 py-5 align-top text-sm text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">3</td>

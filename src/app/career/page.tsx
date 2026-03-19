@@ -15,43 +15,43 @@ const cultureItems = [
   {
     title: "Strategic Alignment & Reflection Meetings",
     content:
-      "Several times a year, we come together to reflect on our projects, review architectural decisions, and align on company direction. We openly discuss what worked, what didn't, and how we raise the bar - together.",
+      "Several times a year, we come together to reflect on our projects, review architectural decisions, and align on company direction. We openly discuss what worked, what didn't, and how we raise the bar — together.",
     image: "/career/culture/strategic-alignment-reflection-meetings.jpg",
   },
   {
     title: "Knowledge Sharing & Technical Deep Dives",
     content:
-      "We make time for practical exchange across teams so expertise is documented, challenged, and shared instead of staying isolated.",
+      "We regularly host internal sessions where engineers share real-world insights — from integration patterns and data platforms to AI use cases and cloud architectures. Experience is shared. Standards evolve. Everyone grows.",
     image: "/career/culture/knowledge-sharing-technical-deep-dives.jpg",
   },
   {
     title: "Certification & Structured Growth",
     content:
-      "We support long-term development through certification paths, learning plans, and clear conversations about how your scope evolves.",
+      "We invest in continuous professional development. Every team member has the responsibility to pass at least one certification per year — fully supported with both time and financial coverage. We don't just talk about growth. We enable it.",
     image: "/career/culture/certification-structured-growth.jpg",
   },
   {
     title: "Team Buildings & Shared Experiences",
     content:
-      "Shared time outside delivery matters. We invest in experiences that strengthen trust and make collaboration easier when the work gets hard.",
+      "We regularly organize team-building events and social gatherings to strengthen relationships beyond project work.\n\nThree times per year, we bring the entire team together in different international locations — combining strategic alignment, shared experiences, and genuine human connection.",
     image: "/career/culture/team-building-shared-experiences.jpg",
   },
   {
     title: "Networking & Industry Engagement",
     content:
-      "We stay connected to the broader market through partner interactions, community participation, and regular exposure to new ideas.",
+      "We actively participate in networking events, conferences, and industry meetups — connecting with partners, clients, and even competitors.\n\nWe believe openness and collaboration within the ecosystem make us sharper, more informed, and future-ready.",
     image: "/career/culture/networking-industry-engagement.jpg",
   },
   {
     title: "Ownership & Trust",
     content:
-      "Responsibility is expected and supported. People are trusted to take initiative, communicate clearly, and follow through.",
+      "We operate in a high-trust environment. Engineers are empowered to take responsibility, influence architectural decisions, and shape outcomes — without unnecessary hierarchy or micromanagement.",
     image: "/career/culture/ownership-and-trust.jpg",
   },
   {
     title: "Be a Leader",
     content:
-      "Leadership at EADX is not tied to hierarchy alone. We value people who guide others through expertise, reliability, and example.",
+      "Leadership at EADX means ownership and transparency.\n\nWe identify emerging leaders early and invest in their growth through continuous training, mentoring, and involvement in strategic discussions. Those who demonstrate technical depth, initiative, and responsibility are given space to lead — whether through architecture decisions, client engagement, or team guidance.\n\nOur leadership culture is open and collaborative. Decisions are not made behind closed doors but shaped through dialogue and shared expertise.\n\nWe grow leaders as we grow the company — deliberately, sustainably, and together.",
     image: "/career/culture/be-a-leader.jpg",
   },
 ];
@@ -210,7 +210,7 @@ export default function CareerPage() {
               { src: "/career/hero-dinner.png", alt: "EADX team dinner" },
               { src: "/career/hero-office-selfie.png", alt: "Office collaboration at EADX" },
               { src: "/career/hero-plane.png", alt: "Traveling for team events" },
-            ].map((img) => (
+            ].map((img, i) => (
               <Image
                 key={img.src}
                 src={img.src}
@@ -218,6 +218,8 @@ export default function CareerPage() {
                 width={280}
                 height={360}
                 className="h-[280px] w-[220px] shrink-0 rounded-2xl object-cover sm:h-[340px] sm:w-[260px]"
+                priority={i === 0}
+                fetchPriority={i === 0 ? "high" : "auto"}
               />
             ))}
           </div>
@@ -232,7 +234,7 @@ export default function CareerPage() {
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-12">
             <CareerCultureAccordion
               eyebrow="High Standards. Strong Bonds. Shared Ambition."
-              eyebrowContent="Our culture is built around accountability, mutual respect, and a strong sense of shared direction. We invest in an environment where people can challenge ideas openly, support each other consistently, and grow while contributing to meaningful work."
+              eyebrowContent="At EADX, our culture is shaped by how we collaborate, grow, and connect — internally and across the industry."
               eyebrowImage="/career/culture/high-standards-shared-ambition.jpg"
               items={cultureItems}
             />

@@ -256,7 +256,7 @@ export default function VivaPage() {
                       <td
                         className={`px-4 py-3.5 text-base ${
                           isLast2
-                            ? "text-zinc-400 dark:text-zinc-500"
+                            ? "text-zinc-500 dark:text-zinc-400"
                             : "text-zinc-700 dark:text-zinc-300"
                         }`}
                       >
