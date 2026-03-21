@@ -90,7 +90,7 @@ export default function VivaPage() {
     <main>
       {/* Section 1 — Challenges */}
       <section className="flex min-h-screen bg-white pt-20 dark:bg-zinc-950">
-        <div className="mx-auto max-w-7xl px-8 py-4 lg:px-12 lg:py-8">
+        <div className="mx-auto max-w-7xl px-8 py-24 lg:px-12 lg:py-32">
           {/* Title spanning ~90% width */}
           <div className="max-w-[90%]">
             <p className="text-sm font-semibold tracking-wider text-accent dark:text-accent-light">
