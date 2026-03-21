@@ -96,7 +96,7 @@ export default function VivaPage() {
             <p className="text-sm font-semibold tracking-wider text-accent dark:text-accent-light">
               Viva
             </p>
-            <h1 className="mt-3 text-[40px] font-normal leading-[110%] tracking-normal text-zinc-950 dark:text-zinc-50 sm:text-[56px] lg:text-[72px]">
+            <h1 className="mt-3 text-4xl font-normal leading-[100%] tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl lg:text-[72px]">
               Common challenges of high{" "}
               <strong className="font-bold">cost and operational risk</strong>{" "}
               for webMethods Platform users
@@ -112,11 +112,11 @@ export default function VivaPage() {
               height={500}
               className="float-right ml-8 mb-4 h-auto w-[280px] dark:brightness-0 dark:invert sm:w-[360px] lg:w-[650px]"
             />
-            <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p className="text-lg font-medium leading-relaxed text-zinc-600 dark:text-zinc-400 lg:text-[20px]">
               Organisations relying on webMethods for enterprise integration
               face a convergence of pressures:
             </p>
-            <ul className="mt-3 space-y-3 pl-4 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+            <ul className="mt-3 space-y-3 text-lg font-medium text-zinc-700 dark:text-zinc-300">
               {[
                 "Significant licence costs",
                 "Significant operations costs (compute, service)",
@@ -125,12 +125,12 @@ export default function VivaPage() {
                 "Lacking new capabilities and innovation",
               ].map((item) => (
                 <li key={item} className="flex gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
+                  <span className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
                   {item}
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p className="mt-6 text-lg font-medium leading-relaxed text-zinc-600 dark:text-zinc-400 lg:text-[20px]">
               Transitioning to a modern, vendor-independent integration
               platform enables enterprises to substantially{" "}
               <strong className="font-semibold text-zinc-950 dark:text-zinc-50">
@@ -216,7 +216,7 @@ export default function VivaPage() {
             </div>
           </div>
 
-          <p className="mt-12 max-w-6xl text-[24px] font-semibold leading-[160%] text-zinc-700 dark:text-zinc-300 sm:text-[30px] lg:text-[36px]">
+          <p className="mt-12 max-w-6xl text-2xl font-semibold leading-[160%] text-zinc-700 dark:text-zinc-300">
             The migration includes all components of the webMethods platform
             including messaging. Furthermore, the migration to a modern stack
             allows users to benefit from state of the art testing and CI/CD

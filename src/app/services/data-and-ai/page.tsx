@@ -261,39 +261,48 @@ const clientStories = [
 const concerns = [
   {
     num: "1",
-    concern:
-      "Our data is not ready for AI. How do we know where we stand and what to fix first?",
+    concern: (
+      <>
+        Our <strong>data is not ready for AI</strong>. How do we know where we stand and what to fix first?
+      </>
+    ),
     solution: "EADX Data Readiness Assessment & AI Roadmap",
   },
   {
     num: "2",
-    concern:
-      "We are spending too much on our data platform and BI tools. Can costs be reduced without losing capability?",
+    concern: (
+      <>
+        We are <strong>spending too much</strong> on our data platform and BI tools. Can costs be reduced without losing capability?
+      </>
+    ),
     solution: "EADX Cost Efficiency Assessment & Optimisation Plan",
   },
   {
     num: "3",
-    concern:
-      "We need to deliver BI and data pipelines faster and more reliably. Our current team is stretched.",
+    concern: (
+      <>
+        We need to <strong>deliver BI and data pipelines faster</strong> and more reliably. Our current team is stretched.
+      </>
+    ),
     solution: "EADX Data Engineering & BI Development Services",
   },
   {
     num: "4",
-    concern:
-      "Our data is ungoverned. We don\u2019t know who owns what, and compliance is becoming a risk.",
+    concern: (
+      <>
+        Our data is ungoverned. We don&rsquo;t know who owns what, and <strong>compliance is becoming a risk</strong>.
+      </>
+    ),
     solution: "EADX Data Governance Programme & Tooling",
   },
   {
     num: "5",
-    concern:
-      "We want to deploy AI but don\u2019t know where to start or how to make it production-safe.",
+    concern: (
+      <>
+        We want to <strong>deploy AI but don&rsquo;t know where to start</strong> or how to make it production-safe.
+      </>
+    ),
     solution: "EADX AI Proof of Concept & Production Deployment",
-  },
-  {
-    num: "6",
-    concern:
-      "We have hundreds of documents with a lot of knowledge buried in them. How can we automate extraction and compliance?",
-    solution: "EADX Document AI & Intelligent Automation Solution",
   },
 ];
 
@@ -639,7 +648,7 @@ export default function DataAndAiPage() {
                         : "bg-zinc-50 dark:bg-zinc-700"
                     }`}
                   >
-                    <td className="border-r border-zinc-200 px-4 py-5 text-lg font-bold text-zinc-950 dark:border-zinc-600 dark:text-zinc-50 align-top">
+                    <td className="border-r border-zinc-200 px-4 py-5 text-lg font-bold text-zinc-950 dark:border-zinc-600 dark:text-zinc-50 align-middle text-center">
                       {row.num}
                     </td>
                     <td className="border-r border-zinc-200 px-4 py-5 text-base text-zinc-700 dark:border-zinc-600 dark:text-zinc-300">
